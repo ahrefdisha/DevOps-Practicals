@@ -1,0 +1,179 @@
+# Unit 2 - Task 05
+
+## Aim
+
+Demonstrate how to pull a Docker image, tag it, push it to Docker Hub, install software inside a running container, verify the installation, and save the changes using Docker commit.
+
+## Step 1: Pull Alpine Linux Image
+
+docker pull alpine:latest
+
+## Step 2: Tag the Image
+
+docker tag alpine:latest dishatribedy/alpine-php:v1
+
+## Step 3: Login to Docker Hub
+
+docker login
+
+## Step 4: Push Image to Docker Hub
+
+docker push dishatribedy/alpine-php:v1
+
+## Step 5: Run Container Interactively
+
+docker run -it alpine:latest sh
+
+## Step 6: Update Package Index
+
+apk update
+
+## Step 7: Install PHP
+
+apk add php
+
+## Step 8: Verify PHP Installation
+
+php -v
+
+## Step 9: Exit Container
+
+exit
+
+## Step 10: Commit Container Changes
+
+docker commit <container-id> dishatribedy/alpine-php:v2
+
+## Result
+
+The Alpine image was pulled, tagged, and pushed to Docker Hub. PHP was installed inside the container and verified successfully. The container changes were saved as a new Docker image using docker commit.
+
+##output
+
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker pull alpine:latest
+latest: Pulling from library/alpine
+Digest: sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659
+Status: Image is up to date for alpine:latest
+docker.io/library/alpine:latest
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker images
+REPOSITORY                                   TAG         IMAGE ID       CREATED             SIZE
+ghcr.io/ahrefdisha/ghcr-demo                 v1          89f8ab911108   22 minutes ago      244MB
+ghcr.io/dishatribedy/ghcr-demo               v1          99e04756e748   22 minutes ago      244MB
+ubuntu-php-echo                              latest      c9ae005c9e82   33 minutes ago      346MB
+dishatribedy/ubuntu-apache-php               v1          60664b1bb614   41 minutes ago      453MB
+dishatribedy/alpine-php-installed            v1          b16aaf7a25eb   About an hour ago   31MB
+<none>                                       <none>      a8a5645920f8   About an hour ago   31MB
+devtask-manager-frontend                     latest      87bcf1d2380d   4 days ago          94.1MB
+devtask-manager-backend                      latest      a0a603e3c176   4 days ago          298MB
+postgres                                     15-alpine   fceb6f86328c   11 days ago         386MB
+httpd                                        latest      96b1e8f69ee3   13 days ago         205MB
+ghcr.io/ahrefdisha/docker-flask              latest      5ac9bab39c11   2 weeks ago         236MB
+ghcr.io/ahrefdisha/sql_1612                  latest      320d4c3ffe26   2 weeks ago         1.06GB
+ghcr.io/ahrefdisha/sql_1612                  v1          320d4c3ffe26   2 weeks ago         1.06GB
+ghcr.io/ahrefdisha/ghcr-demo                 latest      6a4f2417cfaf   2 weeks ago         270MB
+python11                                     latest      1dc31f39ad8d   2 weeks ago         236MB
+ubuntu-demo                                  latest      ce92ceb410e0   3 weeks ago         450MB
+ubuntu-php                                   latest      b96ec885031b   3 weeks ago         451MB
+dishatribedy/alpine-php                      v1          25109184c71b   5 weeks ago         13.6MB
+alpine                                       latest      25109184c71b   5 weeks ago         13.6MB
+ubuntu                                       latest      cd1dba651b30   7 weeks ago         139MB
+dishatribedy/ubuntu                          latest      0406aba87cff   7 weeks ago         139MB
+microservices-project-order-service          latest      d85bd4e04a97   2 months ago        202MB
+microservices-project-notification-service   latest      c8124c952eb1   2 months ago        192MB
+microservices-project-product-service        latest      f384ea9a1283   2 months ago        192MB
+nginx                                        latest      fb01117203ff   2 months ago        244MB
+dishatribedy/myflaskapp                      v3          18e90a3b7627   3 months ago        238MB
+myflaskapp                                   v3          18e90a3b7627   3 months ago        238MB
+dishatribedy/myflaskapp                      v2          e76827bf1247   3 months ago        238MB
+myflaskapp                                   v2          e76827bf1247   3 months ago        238MB
+dishatribedy/pratical                        latest      42a77c24d4d2   3 months ago        82.4MB
+dishatribedy/myflaskapp                      v1          4b9403ec2116   3 months ago        238MB
+myflaskapp                                   v1          4b9403ec2116   3 months ago        238MB
+docker-nginx-flask                           latest      d6999ed9b01a   3 months ago        1.61GB
+docker-nginx-web                             latest      60f67c26232a   3 months ago        1.61GB
+cloudproject                                 latest      d7a0daa2c5dc   3 months ago        80.9MB
+my-site                                      latest      ccf23421c8f7   3 months ago        244MB
+mongo                                        latest      7245ffb851d1   3 months ago        1.22GB
+flask-hello-microservice                     latest      ea0be0f5921e   3 months ago        228MB
+<none>                                       <none>      553f64aecdc3   3 months ago        244MB
+<none>                                       <none>      66460d557b25   5 months ago        139MB
+gcr.io/k8s-minikube/kicbase                  <none>      7171c97a5162   6 months ago        1.73GB
+gcr.io/k8s-minikube/kicbase                  v0.0.48     18b0fda1fa3d   6 months ago        1.73GB
+hello-world                                  latest      56433a6be3fd   7 months ago        16.9kB
+httpd                                        alpine      07b2fabb7029   7 months ago        103MB
+busybox                                      latest      e3652a00a2fa   17 months ago       6.21MB
+philippaul/node-mongo-db                     01          05028c7ed2f1   2 years ago         1.61GB
+philippaul/node-mongo-db                     02          2cf9fd486cf6   2 years ago         1.61GB
+mysql-demo                                   latest      7ede14584684   2 years ago         813MB
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker tag alpine:latest ahrefdisha/alpine-php:v1
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker login
+Authenticating with existing credentials... [Username: dishatribedy]
+
+i Info → To login with a different account, run 'docker logout' followed by 'docker login'
+
+
+Login Succeeded
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker push ahrefdisha/alpine-php:v1
+The push refers to repository [docker.io/ahrefdisha/alpine-php]
+d8ad8cd72600: Unavailable 
+push access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker tag alpine:latest dishatribedy/alpine-php:v1
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker images
+REPOSITORY                                   TAG         IMAGE ID       CREATED             SIZE
+ghcr.io/dishatribedy/ghcr-demo               v1          99e04756e748   24 minutes ago      244MB
+ghcr.io/ahrefdisha/ghcr-demo                 v1          89f8ab911108   24 minutes ago      244MB
+ubuntu-php-echo                              latest      c9ae005c9e82   35 minutes ago      346MB
+dishatribedy/ubuntu-apache-php               v1          60664b1bb614   42 minutes ago      453MB
+dishatribedy/alpine-php-installed            v1          b16aaf7a25eb   About an hour ago   31MB
+<none>                                       <none>      a8a5645920f8   About an hour ago   31MB
+devtask-manager-frontend                     latest      87bcf1d2380d   4 days ago          94.1MB
+devtask-manager-backend                      latest      a0a603e3c176   4 days ago          298MB
+postgres                                     15-alpine   fceb6f86328c   11 days ago         386MB
+httpd                                        latest      96b1e8f69ee3   13 days ago         205MB
+ghcr.io/ahrefdisha/docker-flask              latest      5ac9bab39c11   2 weeks ago         236MB
+ghcr.io/ahrefdisha/sql_1612                  latest      320d4c3ffe26   2 weeks ago         1.06GB
+ghcr.io/ahrefdisha/sql_1612                  v1          320d4c3ffe26   2 weeks ago         1.06GB
+ghcr.io/ahrefdisha/ghcr-demo                 latest      6a4f2417cfaf   2 weeks ago         270MB
+python11                                     latest      1dc31f39ad8d   2 weeks ago         236MB
+ubuntu-demo                                  latest      ce92ceb410e0   3 weeks ago         450MB
+ubuntu-php                                   latest      b96ec885031b   3 weeks ago         451MB
+alpine                                       latest      25109184c71b   5 weeks ago         13.6MB
+ahrefdisha/alpine-php                        v1          25109184c71b   5 weeks ago         13.6MB
+dishatribedy/alpine-php                      v1          25109184c71b   5 weeks ago         13.6MB
+dishatribedy/ubuntu                          latest      0406aba87cff   7 weeks ago         139MB
+ubuntu                                       latest      cd1dba651b30   7 weeks ago         139MB
+microservices-project-order-service          latest      d85bd4e04a97   2 months ago        202MB
+microservices-project-notification-service   latest      c8124c952eb1   2 months ago        192MB
+microservices-project-product-service        latest      f384ea9a1283   2 months ago        192MB
+nginx                                        latest      fb01117203ff   2 months ago        244MB
+dishatribedy/myflaskapp                      v3          18e90a3b7627   3 months ago        238MB
+myflaskapp                                   v3          18e90a3b7627   3 months ago        238MB
+myflaskapp                                   v2          e76827bf1247   3 months ago        238MB
+dishatribedy/myflaskapp                      v2          e76827bf1247   3 months ago        238MB
+dishatribedy/pratical                        latest      42a77c24d4d2   3 months ago        82.4MB
+dishatribedy/myflaskapp                      v1          4b9403ec2116   3 months ago        238MB
+myflaskapp                                   v1          4b9403ec2116   3 months ago        238MB
+docker-nginx-flask                           latest      d6999ed9b01a   3 months ago        1.61GB
+docker-nginx-web                             latest      60f67c26232a   3 months ago        1.61GB
+cloudproject                                 latest      d7a0daa2c5dc   3 months ago        80.9MB
+my-site                                      latest      ccf23421c8f7   3 months ago        244MB
+mongo                                        latest      7245ffb851d1   3 months ago        1.22GB
+flask-hello-microservice                     latest      ea0be0f5921e   3 months ago        228MB
+<none>                                       <none>      553f64aecdc3   3 months ago        244MB
+<none>                                       <none>      66460d557b25   5 months ago        139MB
+gcr.io/k8s-minikube/kicbase                  v0.0.48     18b0fda1fa3d   6 months ago        1.73GB
+gcr.io/k8s-minikube/kicbase                  <none>      7171c97a5162   6 months ago        1.73GB
+hello-world                                  latest      56433a6be3fd   7 months ago        16.9kB
+httpd                                        alpine      07b2fabb7029   7 months ago        103MB
+busybox                                      latest      e3652a00a2fa   17 months ago       6.21MB
+philippaul/node-mongo-db                     01          05028c7ed2f1   2 years ago         1.61GB
+philippaul/node-mongo-db                     02          2cf9fd486cf6   2 years ago         1.61GB
+mysql-demo                                   latest      7ede14584684   2 years ago         813MB
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker push dishatribedy/alpine-php:v1
+The push refers to repository [docker.io/dishatribedy/alpine-php]
+d8ad8cd72600: Layer already exists 
+v1: digest: sha256:1529d13528ed05668b2038ffab807ac8633ad6adfe6be8901adda62411f70d29 size: 1025
+
+i Info → Not all multiplatform-content is present and only the available single-platform image was pushed
+         sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659 -> sha256:1529d13528ed05668b2038ffab807ac8633ad6adfe6be8901adda62411f70d29
+dishatribedy@Dishas-MacBook-Air-2 ~ % 
