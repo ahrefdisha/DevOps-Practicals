@@ -1,0 +1,653 @@
+# Unit 2 - Task 02
+
+## Aim
+Update the Ubuntu container, install Apache and PHP, commit the changes to a new Docker image, compare the image size with the base image, and push the updated image to Docker Hub.
+
+## Commands
+
+docker run -it --name ubuntu-apache-php ubuntu:latest bash
+
+apt update
+
+apt install apache2 php -y
+
+apache2 -v
+
+php -v
+
+exit
+
+docker commit ubuntu-apache-php dishatribedy/ubuntu-apache-php:v1
+
+docker images
+
+docker push dishatribedy/ubuntu-apache-php:v1
+
+##output
+
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker start -i ubuntu-apache-php
+root@ea38b16c8825:/# apt update
+Get:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease [256 kB]
+Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+Get:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease [126 kB]
+Get:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease [126 kB]
+Get:5 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 Packages [1776 kB]
+Get:6 http://ports.ubuntu.com/ubuntu-ports noble/multiverse arm64 Packages [274 kB]
+Get:7 http://ports.ubuntu.com/ubuntu-ports noble/restricted arm64 Packages [113 kB]
+Get:8 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 Packages [19.0 MB]
+Get:9 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [4825 kB]                                                                                                             
+Get:10 http://ports.ubuntu.com/ubuntu-ports noble-updates/multiverse arm64 Packages [41.7 kB]                                                                                                            
+Get:11 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [2388 kB]                                                                                                                  
+Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 Packages [1975 kB]                                                                                                              
+Get:13 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Packages [34.7 kB]                                                                                                            
+Get:14 http://ports.ubuntu.com/ubuntu-ports noble-backports/main arm64 Packages [49.4 kB]                                                                                                                
+Get:15 http://ports.ubuntu.com/ubuntu-ports noble-security/multiverse arm64 Packages [42.1 kB]                                                                                                           
+Get:16 http://ports.ubuntu.com/ubuntu-ports noble-security/restricted arm64 Packages [4620 kB]                                                                                                           
+Get:17 http://ports.ubuntu.com/ubuntu-ports noble-security/universe arm64 Packages [1261 kB]                                                                                                             
+Get:18 http://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Packages [2018 kB]                                                                                                                 
+Fetched 39.1 MB in 15s (2657 kB/s)                                                                                                                                                                       
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+8 packages can be upgraded. Run 'apt list --upgradable' to see them.
+root@ea38b16c8825:/# apt update
+Hit:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+Hit:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease
+Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+8 packages can be upgraded. Run 'apt list --upgradable' to see them.
+root@ea38b16c8825:/# apt install apache2 php -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  adduser apache2-bin apache2-data apache2-utils ca-certificates krb5-locales libapache2-mod-php8.3 libapr1t64 libaprutil1-dbd-sqlite3 libaprutil1-ldap libaprutil1t64 libargon2-1 libbrotli1 libbsd0
+  libcurl4t64 libedit2 libexpat1 libgdbm-compat4t64 libgdbm6t64 libgssapi-krb5-2 libicu74 libjansson4 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-common libldap2 liblua5.4-0
+  libnghttp2-14 libperl5.38t64 libpsl5t64 librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libsodium23 libsqlite3-0 libssh-4 libssl3t64 libxml2 media-types netbase openssl perl
+  perl-modules-5.38 php-common php8.3 php8.3-cli php8.3-common php8.3-opcache php8.3-readline psmisc publicsuffix ssl-cert tzdata ucf
+Suggested packages:
+  liblocale-gettext-perl cron quota ecryptfs-utils apache2-doc apache2-suexec-pristine | apache2-suexec-custom www-browser ufw php-pear gdbm-l10n krb5-doc krb5-user libsasl2-modules-gssapi-mit
+  | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql perl-doc libterm-readline-gnu-perl | libterm-readline-perl-perl make libtap-harness-archive-perl
+The following NEW packages will be installed:
+  adduser apache2 apache2-bin apache2-data apache2-utils ca-certificates krb5-locales libapache2-mod-php8.3 libapr1t64 libaprutil1-dbd-sqlite3 libaprutil1-ldap libaprutil1t64 libargon2-1 libbrotli1
+  libbsd0 libcurl4t64 libedit2 libexpat1 libgdbm-compat4t64 libgdbm6t64 libgssapi-krb5-2 libicu74 libjansson4 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-common libldap2 liblua5.4-0
+  libnghttp2-14 libperl5.38t64 libpsl5t64 librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libsodium23 libsqlite3-0 libssh-4 libxml2 media-types netbase openssl perl perl-modules-5.38 php
+  php-common php8.3 php8.3-cli php8.3-common php8.3-opcache php8.3-readline psmisc publicsuffix ssl-cert tzdata ucf
+The following packages will be upgraded:
+  libssl3t64
+1 upgraded, 58 newly installed, 0 to remove and 7 not upgraded.
+Need to get 33.7 MB of archives.
+After this operation, 145 MB of additional disk space will be used.
+Get:1 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 perl-modules-5.38 all 5.38.2-3.2ubuntu0.2 [3110 kB]
+Get:2 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libgdbm6t64 arm64 1.23-5.1build1 [34.4 kB]
+Get:3 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libgdbm-compat4t64 arm64 1.23-5.1build1 [6578 B]
+Get:4 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libperl5.38t64 arm64 5.38.2-3.2ubuntu0.2 [4783 kB]
+Get:5 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 perl arm64 5.38.2-3.2ubuntu0.2 [231 kB]
+Get:6 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libapr1t64 arm64 1.7.2-3.1ubuntu0.1 [106 kB]
+Get:7 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libexpat1 arm64 2.6.1-2ubuntu0.4 [77.5 kB]                                                                                           
+Get:8 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libssl3t64 arm64 3.0.13-0ubuntu3.7 [1798 kB]                                                                                         
+Get:9 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libaprutil1t64 arm64 1.6.3-1.1ubuntu7 [93.9 kB]                                                                                              
+Get:10 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsqlite3-0 arm64 3.45.1-1ubuntu2.5 [704 kB]                                                                                       
+Get:11 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libaprutil1-dbd-sqlite3 arm64 1.6.3-1.1ubuntu7 [11.2 kB]                                                                                    
+Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsasl2-modules-db arm64 2.1.28+dfsg1-5ubuntu3.1 [21.6 kB]                                                                         
+Get:13 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsasl2-2 arm64 2.1.28+dfsg1-5ubuntu3.1 [54.7 kB]                                                                                  
+Get:14 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libldap2 arm64 2.6.10+dfsg-0ubuntu0.24.04.1 [196 kB]                                                                                
+Get:15 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libaprutil1-ldap arm64 1.6.3-1.1ubuntu7 [9046 B]                                                                                            
+Get:16 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libbrotli1 arm64 1.1.0-2build2 [339 kB]                                                                                                     
+Get:17 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libkrb5support0 arm64 1.20.1-6ubuntu2.6 [34.8 kB]                                                                                   
+Get:18 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libk5crypto3 arm64 1.20.1-6ubuntu2.6 [85.8 kB]                                                                                      
+Get:19 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libkeyutils1 arm64 1.6.3-3build1 [9654 B]                                                                                                   
+Get:20 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libkrb5-3 arm64 1.20.1-6ubuntu2.6 [349 kB]                                                                                          
+Get:21 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libgssapi-krb5-2 arm64 1.20.1-6ubuntu2.6 [142 kB]                                                                                   
+Get:22 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libnghttp2-14 arm64 1.59.0-1ubuntu0.2 [74.5 kB]                                                                                     
+Get:23 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libpsl5t64 arm64 0.21.2-1.1build1 [57.4 kB]                                                                                                 
+Get:24 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 librtmp1 arm64 2.4+20151223.gitfa8646d.1-2build7 [57.8 kB]                                                                                  
+Get:25 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libssh-4 arm64 0.10.6-2ubuntu0.3 [191 kB]                                                                                           
+Get:26 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libcurl4t64 arm64 8.5.0-2ubuntu10.7 [334 kB]                                                                                        
+Get:27 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libjansson4 arm64 2.14-2build2 [34.4 kB]                                                                                                    
+Get:28 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 liblua5.4-0 arm64 5.4.6-3build2 [158 kB]                                                                                                    
+Get:29 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libicu74 arm64 74.2-1ubuntu3.1 [10.8 MB]                                                                                            
+Get:30 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libxml2 arm64 2.9.14+dfsg-1.3ubuntu3.7 [735 kB]                                                                                     
+Get:31 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 apache2-bin arm64 2.4.58-1ubuntu8.11 [1324 kB]                                                                                      
+Get:32 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 apache2-data all 2.4.58-1ubuntu8.11 [163 kB]                                                                                        
+Get:33 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 apache2-utils arm64 2.4.58-1ubuntu8.11 [97.4 kB]                                                                                    
+Get:34 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 media-types all 10.1.0 [27.5 kB]                                                                                                            
+Get:35 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 apache2 arm64 2.4.58-1ubuntu8.11 [90.2 kB]                                                                                          
+Get:36 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 adduser all 3.137ubuntu1 [101 kB]                                                                                                           
+Get:37 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 openssl arm64 3.0.13-0ubuntu3.7 [985 kB]                                                                                            
+Get:38 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 ca-certificates all 20240203 [159 kB]                                                                                                       
+Get:39 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 krb5-locales all 1.20.1-6ubuntu2.6 [14.8 kB]                                                                                        
+Get:40 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libargon2-1 arm64 0~20190702+dfsg-4build1 [20.5 kB]                                                                                         
+Get:41 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libbsd0 arm64 0.12.1-1build1.1 [41.0 kB]                                                                                            
+Get:42 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 netbase all 6.4 [13.1 kB]                                                                                                                   
+Get:43 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 tzdata all 2025b-0ubuntu0.24.04.1 [276 kB]                                                                                          
+Get:44 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 ucf all 3.0043+nmu1 [56.5 kB]                                                                                                               
+Get:45 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libedit2 arm64 3.1-20230828-1build1 [97.5 kB]                                                                                               
+Get:46 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 psmisc arm64 23.7-1build1 [178 kB]                                                                                                          
+Get:47 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 publicsuffix all 20231001.0357-0.1 [129 kB]                                                                                                 
+Get:48 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 php-common all 2:93ubuntu2 [13.9 kB]                                                                                                        
+Get:49 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 php8.3-common arm64 8.3.6-0ubuntu0.24.04.6 [738 kB]                                                                                 
+Get:50 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 php8.3-opcache arm64 8.3.6-0ubuntu0.24.04.6 [580 kB]                                                                                
+Get:51 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 php8.3-readline arm64 8.3.6-0ubuntu0.24.04.6 [13.2 kB]                                                                              
+Get:52 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsodium23 arm64 1.0.18-1ubuntu0.24.04.1 [119 kB]                                                                                  
+Get:53 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 php8.3-cli arm64 8.3.6-0ubuntu0.24.04.6 [1854 kB]                                                                                   
+Get:54 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libapache2-mod-php8.3 arm64 8.3.6-0ubuntu0.24.04.6 [1785 kB]                                                                        
+Get:55 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libldap-common all 2.6.10+dfsg-0ubuntu0.24.04.1 [32.9 kB]                                                                           
+Get:56 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsasl2-modules arm64 2.1.28+dfsg1-5ubuntu3.1 [69.6 kB]                                                                            
+Get:57 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 php8.3 all 8.3.6-0ubuntu0.24.04.6 [9172 B]                                                                                          
+Get:58 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 php all 2:8.3+93ubuntu2 [4076 B]                                                                                                            
+Get:59 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 ssl-cert all 1.1.2ubuntu1 [17.8 kB]                                                                                                         
+Fetched 33.7 MB in 27s (1267 kB/s)                                                                                                                                                                       
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package perl-modules-5.38.
+(Reading database ... 4376 files and directories currently installed.)
+Preparing to unpack .../0-perl-modules-5.38_5.38.2-3.2ubuntu0.2_all.deb ...
+Unpacking perl-modules-5.38 (5.38.2-3.2ubuntu0.2) ...
+Selecting previously unselected package libgdbm6t64:arm64.
+Preparing to unpack .../1-libgdbm6t64_1.23-5.1build1_arm64.deb ...
+Unpacking libgdbm6t64:arm64 (1.23-5.1build1) ...
+Selecting previously unselected package libgdbm-compat4t64:arm64.
+Preparing to unpack .../2-libgdbm-compat4t64_1.23-5.1build1_arm64.deb ...
+Unpacking libgdbm-compat4t64:arm64 (1.23-5.1build1) ...
+Selecting previously unselected package libperl5.38t64:arm64.
+Preparing to unpack .../3-libperl5.38t64_5.38.2-3.2ubuntu0.2_arm64.deb ...
+Unpacking libperl5.38t64:arm64 (5.38.2-3.2ubuntu0.2) ...
+Selecting previously unselected package perl.
+Preparing to unpack .../4-perl_5.38.2-3.2ubuntu0.2_arm64.deb ...
+Unpacking perl (5.38.2-3.2ubuntu0.2) ...
+Selecting previously unselected package libapr1t64:arm64.
+Preparing to unpack .../5-libapr1t64_1.7.2-3.1ubuntu0.1_arm64.deb ...
+Unpacking libapr1t64:arm64 (1.7.2-3.1ubuntu0.1) ...
+Selecting previously unselected package libexpat1:arm64.
+Preparing to unpack .../6-libexpat1_2.6.1-2ubuntu0.4_arm64.deb ...
+Unpacking libexpat1:arm64 (2.6.1-2ubuntu0.4) ...
+Preparing to unpack .../7-libssl3t64_3.0.13-0ubuntu3.7_arm64.deb ...
+Unpacking libssl3t64:arm64 (3.0.13-0ubuntu3.7) over (3.0.13-0ubuntu3.6) ...
+Setting up libssl3t64:arm64 (3.0.13-0ubuntu3.7) ...
+Selecting previously unselected package libaprutil1t64:arm64.
+(Reading database ... 6410 files and directories currently installed.)
+Preparing to unpack .../00-libaprutil1t64_1.6.3-1.1ubuntu7_arm64.deb ...
+Unpacking libaprutil1t64:arm64 (1.6.3-1.1ubuntu7) ...
+Selecting previously unselected package libsqlite3-0:arm64.
+Preparing to unpack .../01-libsqlite3-0_3.45.1-1ubuntu2.5_arm64.deb ...
+Unpacking libsqlite3-0:arm64 (3.45.1-1ubuntu2.5) ...
+Selecting previously unselected package libaprutil1-dbd-sqlite3:arm64.
+Preparing to unpack .../02-libaprutil1-dbd-sqlite3_1.6.3-1.1ubuntu7_arm64.deb ...
+Unpacking libaprutil1-dbd-sqlite3:arm64 (1.6.3-1.1ubuntu7) ...
+Selecting previously unselected package libsasl2-modules-db:arm64.
+Preparing to unpack .../03-libsasl2-modules-db_2.1.28+dfsg1-5ubuntu3.1_arm64.deb ...
+Unpacking libsasl2-modules-db:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Selecting previously unselected package libsasl2-2:arm64.
+Preparing to unpack .../04-libsasl2-2_2.1.28+dfsg1-5ubuntu3.1_arm64.deb ...
+Unpacking libsasl2-2:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Selecting previously unselected package libldap2:arm64.
+Preparing to unpack .../05-libldap2_2.6.10+dfsg-0ubuntu0.24.04.1_arm64.deb ...
+Unpacking libldap2:arm64 (2.6.10+dfsg-0ubuntu0.24.04.1) ...
+Selecting previously unselected package libaprutil1-ldap:arm64.
+Preparing to unpack .../06-libaprutil1-ldap_1.6.3-1.1ubuntu7_arm64.deb ...
+Unpacking libaprutil1-ldap:arm64 (1.6.3-1.1ubuntu7) ...
+Selecting previously unselected package libbrotli1:arm64.
+Preparing to unpack .../07-libbrotli1_1.1.0-2build2_arm64.deb ...
+Unpacking libbrotli1:arm64 (1.1.0-2build2) ...
+Selecting previously unselected package libkrb5support0:arm64.
+Preparing to unpack .../08-libkrb5support0_1.20.1-6ubuntu2.6_arm64.deb ...
+Unpacking libkrb5support0:arm64 (1.20.1-6ubuntu2.6) ...
+Selecting previously unselected package libk5crypto3:arm64.
+Preparing to unpack .../09-libk5crypto3_1.20.1-6ubuntu2.6_arm64.deb ...
+Unpacking libk5crypto3:arm64 (1.20.1-6ubuntu2.6) ...
+Selecting previously unselected package libkeyutils1:arm64.
+Preparing to unpack .../10-libkeyutils1_1.6.3-3build1_arm64.deb ...
+Unpacking libkeyutils1:arm64 (1.6.3-3build1) ...
+Selecting previously unselected package libkrb5-3:arm64.
+Preparing to unpack .../11-libkrb5-3_1.20.1-6ubuntu2.6_arm64.deb ...
+Unpacking libkrb5-3:arm64 (1.20.1-6ubuntu2.6) ...
+Selecting previously unselected package libgssapi-krb5-2:arm64.
+Preparing to unpack .../12-libgssapi-krb5-2_1.20.1-6ubuntu2.6_arm64.deb ...
+Unpacking libgssapi-krb5-2:arm64 (1.20.1-6ubuntu2.6) ...
+Selecting previously unselected package libnghttp2-14:arm64.
+Preparing to unpack .../13-libnghttp2-14_1.59.0-1ubuntu0.2_arm64.deb ...
+Unpacking libnghttp2-14:arm64 (1.59.0-1ubuntu0.2) ...
+Selecting previously unselected package libpsl5t64:arm64.
+Preparing to unpack .../14-libpsl5t64_0.21.2-1.1build1_arm64.deb ...
+Unpacking libpsl5t64:arm64 (0.21.2-1.1build1) ...
+Selecting previously unselected package librtmp1:arm64.
+Preparing to unpack .../15-librtmp1_2.4+20151223.gitfa8646d.1-2build7_arm64.deb ...
+Unpacking librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build7) ...
+Selecting previously unselected package libssh-4:arm64.
+Preparing to unpack .../16-libssh-4_0.10.6-2ubuntu0.3_arm64.deb ...
+Unpacking libssh-4:arm64 (0.10.6-2ubuntu0.3) ...
+Selecting previously unselected package libcurl4t64:arm64.
+Preparing to unpack .../17-libcurl4t64_8.5.0-2ubuntu10.7_arm64.deb ...
+Unpacking libcurl4t64:arm64 (8.5.0-2ubuntu10.7) ...
+Selecting previously unselected package libjansson4:arm64.
+Preparing to unpack .../18-libjansson4_2.14-2build2_arm64.deb ...
+Unpacking libjansson4:arm64 (2.14-2build2) ...
+Selecting previously unselected package liblua5.4-0:arm64.
+Preparing to unpack .../19-liblua5.4-0_5.4.6-3build2_arm64.deb ...
+Unpacking liblua5.4-0:arm64 (5.4.6-3build2) ...
+Selecting previously unselected package libicu74:arm64.
+Preparing to unpack .../20-libicu74_74.2-1ubuntu3.1_arm64.deb ...
+Unpacking libicu74:arm64 (74.2-1ubuntu3.1) ...
+Selecting previously unselected package libxml2:arm64.
+Preparing to unpack .../21-libxml2_2.9.14+dfsg-1.3ubuntu3.7_arm64.deb ...
+Unpacking libxml2:arm64 (2.9.14+dfsg-1.3ubuntu3.7) ...
+Selecting previously unselected package apache2-bin.
+Preparing to unpack .../22-apache2-bin_2.4.58-1ubuntu8.11_arm64.deb ...
+Unpacking apache2-bin (2.4.58-1ubuntu8.11) ...
+Selecting previously unselected package apache2-data.
+Preparing to unpack .../23-apache2-data_2.4.58-1ubuntu8.11_all.deb ...
+Unpacking apache2-data (2.4.58-1ubuntu8.11) ...
+Selecting previously unselected package apache2-utils.
+Preparing to unpack .../24-apache2-utils_2.4.58-1ubuntu8.11_arm64.deb ...
+Unpacking apache2-utils (2.4.58-1ubuntu8.11) ...
+Selecting previously unselected package media-types.
+Preparing to unpack .../25-media-types_10.1.0_all.deb ...
+Unpacking media-types (10.1.0) ...
+Selecting previously unselected package apache2.
+Preparing to unpack .../26-apache2_2.4.58-1ubuntu8.11_arm64.deb ...
+Unpacking apache2 (2.4.58-1ubuntu8.11) ...
+Selecting previously unselected package adduser.
+Preparing to unpack .../27-adduser_3.137ubuntu1_all.deb ...
+Unpacking adduser (3.137ubuntu1) ...
+Setting up adduser (3.137ubuntu1) ...
+Selecting previously unselected package openssl.
+(Reading database ... 7311 files and directories currently installed.)
+Preparing to unpack .../00-openssl_3.0.13-0ubuntu3.7_arm64.deb ...
+Unpacking openssl (3.0.13-0ubuntu3.7) ...
+Selecting previously unselected package ca-certificates.
+Preparing to unpack .../01-ca-certificates_20240203_all.deb ...
+Unpacking ca-certificates (20240203) ...
+Selecting previously unselected package krb5-locales.
+Preparing to unpack .../02-krb5-locales_1.20.1-6ubuntu2.6_all.deb ...
+Unpacking krb5-locales (1.20.1-6ubuntu2.6) ...
+Selecting previously unselected package libargon2-1:arm64.
+Preparing to unpack .../03-libargon2-1_0~20190702+dfsg-4build1_arm64.deb ...
+Unpacking libargon2-1:arm64 (0~20190702+dfsg-4build1) ...
+Selecting previously unselected package libbsd0:arm64.
+Preparing to unpack .../04-libbsd0_0.12.1-1build1.1_arm64.deb ...
+Unpacking libbsd0:arm64 (0.12.1-1build1.1) ...
+Selecting previously unselected package netbase.
+Preparing to unpack .../05-netbase_6.4_all.deb ...
+Unpacking netbase (6.4) ...
+Selecting previously unselected package tzdata.
+Preparing to unpack .../06-tzdata_2025b-0ubuntu0.24.04.1_all.deb ...
+Unpacking tzdata (2025b-0ubuntu0.24.04.1) ...
+Selecting previously unselected package ucf.
+Preparing to unpack .../07-ucf_3.0043+nmu1_all.deb ...
+Moving old data out of the way
+Unpacking ucf (3.0043+nmu1) ...
+Selecting previously unselected package libedit2:arm64.
+Preparing to unpack .../08-libedit2_3.1-20230828-1build1_arm64.deb ...
+Unpacking libedit2:arm64 (3.1-20230828-1build1) ...
+Selecting previously unselected package psmisc.
+Preparing to unpack .../09-psmisc_23.7-1build1_arm64.deb ...
+Unpacking psmisc (23.7-1build1) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../10-publicsuffix_20231001.0357-0.1_all.deb ...
+Unpacking publicsuffix (20231001.0357-0.1) ...
+Selecting previously unselected package php-common.
+Preparing to unpack .../11-php-common_2%3a93ubuntu2_all.deb ...
+Unpacking php-common (2:93ubuntu2) ...
+Selecting previously unselected package php8.3-common.
+Preparing to unpack .../12-php8.3-common_8.3.6-0ubuntu0.24.04.6_arm64.deb ...
+Unpacking php8.3-common (8.3.6-0ubuntu0.24.04.6) ...
+Selecting previously unselected package php8.3-opcache.
+Preparing to unpack .../13-php8.3-opcache_8.3.6-0ubuntu0.24.04.6_arm64.deb ...
+Unpacking php8.3-opcache (8.3.6-0ubuntu0.24.04.6) ...
+Selecting previously unselected package php8.3-readline.
+Preparing to unpack .../14-php8.3-readline_8.3.6-0ubuntu0.24.04.6_arm64.deb ...
+Unpacking php8.3-readline (8.3.6-0ubuntu0.24.04.6) ...
+Selecting previously unselected package libsodium23:arm64.
+Preparing to unpack .../15-libsodium23_1.0.18-1ubuntu0.24.04.1_arm64.deb ...
+Unpacking libsodium23:arm64 (1.0.18-1ubuntu0.24.04.1) ...
+Selecting previously unselected package php8.3-cli.
+Preparing to unpack .../16-php8.3-cli_8.3.6-0ubuntu0.24.04.6_arm64.deb ...
+Unpacking php8.3-cli (8.3.6-0ubuntu0.24.04.6) ...
+Selecting previously unselected package libapache2-mod-php8.3.
+Preparing to unpack .../17-libapache2-mod-php8.3_8.3.6-0ubuntu0.24.04.6_arm64.deb ...
+Unpacking libapache2-mod-php8.3 (8.3.6-0ubuntu0.24.04.6) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../18-libldap-common_2.6.10+dfsg-0ubuntu0.24.04.1_all.deb ...
+Unpacking libldap-common (2.6.10+dfsg-0ubuntu0.24.04.1) ...
+Selecting previously unselected package libsasl2-modules:arm64.
+Preparing to unpack .../19-libsasl2-modules_2.1.28+dfsg1-5ubuntu3.1_arm64.deb ...
+Unpacking libsasl2-modules:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Selecting previously unselected package php8.3.
+Preparing to unpack .../20-php8.3_8.3.6-0ubuntu0.24.04.6_all.deb ...
+Unpacking php8.3 (8.3.6-0ubuntu0.24.04.6) ...
+Selecting previously unselected package php.
+Preparing to unpack .../21-php_2%3a8.3+93ubuntu2_all.deb ...
+Unpacking php (2:8.3+93ubuntu2) ...
+Selecting previously unselected package ssl-cert.
+Preparing to unpack .../22-ssl-cert_1.1.2ubuntu1_all.deb ...
+Unpacking ssl-cert (1.1.2ubuntu1) ...
+Setting up libexpat1:arm64 (2.6.1-2ubuntu0.4) ...
+Setting up media-types (10.1.0) ...
+Setting up libkeyutils1:arm64 (1.6.3-3build1) ...
+Setting up libsodium23:arm64 (1.0.18-1ubuntu0.24.04.1) ...
+Setting up libgdbm6t64:arm64 (1.23-5.1build1) ...
+Setting up libgdbm-compat4t64:arm64 (1.23-5.1build1) ...
+Setting up psmisc (23.7-1build1) ...
+Setting up libargon2-1:arm64 (0~20190702+dfsg-4build1) ...
+Setting up libbrotli1:arm64 (1.1.0-2build2) ...
+Setting up libsqlite3-0:arm64 (3.45.1-1ubuntu2.5) ...
+Setting up libsasl2-modules:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Setting up libpsl5t64:arm64 (0.21.2-1.1build1) ...
+Setting up libnghttp2-14:arm64 (1.59.0-1ubuntu0.2) ...
+Setting up krb5-locales (1.20.1-6ubuntu2.6) ...
+Setting up libldap-common (2.6.10+dfsg-0ubuntu0.24.04.1) ...
+Setting up libjansson4:arm64 (2.14-2build2) ...
+Setting up libkrb5support0:arm64 (1.20.1-6ubuntu2.6) ...
+Setting up libsasl2-modules-db:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Setting up tzdata (2025b-0ubuntu0.24.04.1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+Configuring tzdata
+------------------
+
+Please select the geographic area in which you live. Subsequent configuration questions will narrow this down by presenting a list of cities, representing the time zones in which they are located.
+
+  1. Africa  2. America  3. Antarctica  4. Arctic  5. Asia  6. Atlantic  7. Australia  8. Europe  9. Indian  10. Pacific  11. Etc  12. Legacy
+Geographic area: 
+
+Geographic area: 
+
+Geographic area: 5
+
+Please select the city or region corresponding to your time zone.
+
+  1. Aden      9. Baghdad   17. Chita       25. Dushanbe     33. Irkutsk    41. Kashgar       49. Macau         57. Omsk        65. Riyadh         73. Tashkent     81. Urumqi
+  2. Almaty    10. Bahrain  18. Choibalsan  26. Famagusta    34. Istanbul   42. Kathmandu     50. Magadan       58. Oral        66. Sakhalin       74. Tbilisi      82. Ust-Nera
+  3. Amman     11. Baku     19. Chongqing   27. Gaza         35. Jakarta    43. Khandyga      51. Makassar      59. Phnom_Penh  67. Samarkand      75. Tehran       83. Vientiane
+  4. Anadyr    12. Bangkok  20. Colombo     28. Harbin       36. Jayapura   44. Kolkata       52. Manila        60. Pontianak   68. Seoul          76. Tel_Aviv     84. Vladivostok
+  5. Aqtau     13. Barnaul  21. Damascus    29. Hebron       37. Jerusalem  45. Krasnoyarsk   53. Muscat        61. Pyongyang   69. Shanghai       77. Thimphu      85. Yakutsk
+  6. Aqtobe    14. Beirut   22. Dhaka       30. Ho_Chi_Minh  38. Kabul      46. Kuala_Lumpur  54. Nicosia       62. Qatar       70. Singapore      78. Tokyo        86. Yangon
+  7. Ashgabat  15. Bishkek  23. Dili        31. Hong_Kong    39. Kamchatka  47. Kuching       55. Novokuznetsk  63. Qostanay    71. Srednekolymsk  79. Tomsk        87. Yekaterinburg
+  8. Atyrau    16. Brunei   24. Dubai       32. Hovd         40. Karachi    48. Kuwait        56. Novosibirsk   64. Qyzylorda   72. Taipei         80. Ulaanbaatar  88. Yerevan
+Time zone: 44
+
+
+Current default time zone: 'Asia/Kolkata'
+Local time is now:      Tue Mar 10 00:50:22 IST 2026.
+Universal Time is now:  Mon Mar  9 19:20:22 UTC 2026.
+Run 'dpkg-reconfigure tzdata' if you wish to change it.
+
+Setting up librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build7) ...
+Setting up perl-modules-5.38 (5.38.2-3.2ubuntu0.2) ...
+Setting up ucf (3.0043+nmu1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+Setting up libk5crypto3:arm64 (1.20.1-6ubuntu2.6) ...
+Setting up libsasl2-2:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Setting up libicu74:arm64 (74.2-1ubuntu3.1) ...
+Setting up libapr1t64:arm64 (1.7.2-3.1ubuntu0.1) ...
+Setting up liblua5.4-0:arm64 (5.4.6-3build2) ...
+Setting up netbase (6.4) ...
+Setting up libkrb5-3:arm64 (1.20.1-6ubuntu2.6) ...
+Setting up apache2-data (2.4.58-1ubuntu8.11) ...
+Setting up libperl5.38t64:arm64 (5.38.2-3.2ubuntu0.2) ...
+Setting up openssl (3.0.13-0ubuntu3.7) ...
+Setting up libbsd0:arm64 (0.12.1-1build1.1) ...
+Setting up publicsuffix (20231001.0357-0.1) ...
+Setting up libxml2:arm64 (2.9.14+dfsg-1.3ubuntu3.7) ...
+Setting up libldap2:arm64 (2.6.10+dfsg-0ubuntu0.24.04.1) ...
+Setting up libaprutil1t64:arm64 (1.6.3-1.1ubuntu7) ...
+Setting up php-common (2:93ubuntu2) ...
+Setting up libedit2:arm64 (3.1-20230828-1build1) ...
+Setting up php8.3-common (8.3.6-0ubuntu0.24.04.6) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/calendar.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/ctype.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/exif.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/fileinfo.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/ffi.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/ftp.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/gettext.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/iconv.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/pdo.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/phar.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/posix.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/shmop.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/sockets.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/sysvmsg.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/sysvsem.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/sysvshm.ini with new version
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/tokenizer.ini with new version
+Setting up libaprutil1-ldap:arm64 (1.6.3-1.1ubuntu7) ...
+Setting up libaprutil1-dbd-sqlite3:arm64 (1.6.3-1.1ubuntu7) ...
+Setting up ca-certificates (20240203) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+Updating certificates in /etc/ssl/certs...
+146 added, 0 removed; done.
+Setting up perl (5.38.2-3.2ubuntu0.2) ...
+Setting up php8.3-readline (8.3.6-0ubuntu0.24.04.6) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/readline.ini with new version
+Setting up ssl-cert (1.1.2ubuntu1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+Setting up libgssapi-krb5-2:arm64 (1.20.1-6ubuntu2.6) ...
+Setting up libssh-4:arm64 (0.10.6-2ubuntu0.3) ...
+Setting up php8.3-opcache (8.3.6-0ubuntu0.24.04.6) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/mods-available/opcache.ini with new version
+Setting up apache2-utils (2.4.58-1ubuntu8.11) ...
+Setting up libcurl4t64:arm64 (8.5.0-2ubuntu10.7) ...
+Setting up php8.3-cli (8.3.6-0ubuntu0.24.04.6) ...
+update-alternatives: using /usr/bin/php8.3 to provide /usr/bin/php (php) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/php.1.gz because associated file /usr/share/man/man1/php8.3.1.gz (of link group php) doesn't exist
+update-alternatives: using /usr/bin/phar8.3 to provide /usr/bin/phar (phar) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/phar.1.gz because associated file /usr/share/man/man1/phar8.3.1.gz (of link group phar) doesn't exist
+update-alternatives: using /usr/bin/phar.phar8.3 to provide /usr/bin/phar.phar (phar.phar) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/phar.phar.1.gz because associated file /usr/share/man/man1/phar.phar8.3.1.gz (of link group phar.phar) doesn't exist
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/cli/php.ini with new version
+Setting up apache2-bin (2.4.58-1ubuntu8.11) ...
+Setting up libapache2-mod-php8.3 (8.3.6-0ubuntu0.24.04.6) ...
+Package apache2 is not configured yet. Will defer actions by package libapache2-mod-php8.3.
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/php/8.3/apache2/php.ini with new version
+No module matches 
+Setting up apache2 (2.4.58-1ubuntu8.11) ...
+Enabling module mpm_event.
+Enabling module authz_core.
+Enabling module authz_host.
+Enabling module authn_core.
+Enabling module auth_basic.
+Enabling module access_compat.
+Enabling module authn_file.
+Enabling module authz_user.
+Enabling module alias.
+Enabling module dir.
+Enabling module autoindex.
+Enabling module env.
+Enabling module mime.
+Enabling module negotiation.
+Enabling module setenvif.
+Enabling module filter.
+Enabling module deflate.
+Enabling module status.
+Enabling module reqtimeout.
+Enabling conf charset.
+Enabling conf localized-error-pages.
+Enabling conf other-vhosts-access-log.
+Enabling conf security.
+Enabling conf serve-cgi-bin.
+Enabling site 000-default.
+info: Switch to mpm prefork for package libapache2-mod-php8.3
+Module mpm_event disabled.
+Enabling module mpm_prefork.
+info: Executing deferred 'a2enmod php8.3' for package libapache2-mod-php8.3
+Enabling module php8.3.
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up php8.3 (8.3.6-0ubuntu0.24.04.6) ...
+Setting up php (2:8.3+93ubuntu2) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.6) ...
+Processing triggers for ca-certificates (20240203) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+Processing triggers for php8.3-cli (8.3.6-0ubuntu0.24.04.6) ...
+Processing triggers for libapache2-mod-php8.3 (8.3.6-0ubuntu0.24.04.6) ...
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of restart.
+root@ea38b16c8825:/# apache2 -v
+Server version: Apache/2.4.58 (Ubuntu)
+Server built:   2026-03-05T17:31:54
+root@ea38b16c8825:/# php -v
+PHP 8.3.6 (cli) (built: Jan  7 2026 08:40:32) (NTS)
+Copyright (c) The PHP Group
+Zend Engine v4.3.6, Copyright (c) Zend Technologies
+    with Zend OPcache v8.3.6, Copyright (c), by Zend Technologies
+root@ea38b16c8825:/# exit
+exit
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker commit ubuntu-apache-php dishatribedy/ubuntu-apache-php:v1
+sha256:60664b1bb61489e12c948122bf540f5975b31d4d599dfc520be35caa87855348
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker images
+REPOSITORY                                   TAG         IMAGE ID       CREATED          SIZE
+dishatribedy/ubuntu-apache-php               v1          60664b1bb614   13 seconds ago   453MB
+dishatribedy/alpine-php-installed            v1          b16aaf7a25eb   31 minutes ago   31MB
+<none>                                       <none>      a8a5645920f8   39 minutes ago   31MB
+devtask-manager-frontend                     latest      87bcf1d2380d   4 days ago       94.1MB
+devtask-manager-backend                      latest      a0a603e3c176   4 days ago       298MB
+postgres                                     15-alpine   fceb6f86328c   11 days ago      386MB
+httpd                                        latest      96b1e8f69ee3   13 days ago      205MB
+ghcr.io/ahrefdisha/docker-flask              latest      5ac9bab39c11   2 weeks ago      236MB
+ghcr.io/ahrefdisha/sql_1612                  latest      320d4c3ffe26   2 weeks ago      1.06GB
+ghcr.io/ahrefdisha/sql_1612                  v1          320d4c3ffe26   2 weeks ago      1.06GB
+ghcr.io/ahrefdisha/ghcr-demo                 latest      6a4f2417cfaf   2 weeks ago      270MB
+python11                                     latest      1dc31f39ad8d   2 weeks ago      236MB
+ubuntu-demo                                  latest      ce92ceb410e0   3 weeks ago      450MB
+ubuntu-php                                   latest      b96ec885031b   3 weeks ago      451MB
+alpine                                       latest      25109184c71b   5 weeks ago      13.6MB
+dishatribedy/alpine-php                      v1          25109184c71b   5 weeks ago      13.6MB
+ubuntu                                       latest      cd1dba651b30   7 weeks ago      139MB
+dishatribedy/ubuntu                          latest      0406aba87cff   7 weeks ago      139MB
+microservices-project-order-service          latest      d85bd4e04a97   2 months ago     202MB
+microservices-project-notification-service   latest      c8124c952eb1   2 months ago     192MB
+microservices-project-product-service        latest      f384ea9a1283   2 months ago     192MB
+nginx                                        latest      fb01117203ff   2 months ago     244MB
+dishatribedy/myflaskapp                      v3          18e90a3b7627   3 months ago     238MB
+myflaskapp                                   v3          18e90a3b7627   3 months ago     238MB
+dishatribedy/myflaskapp                      v2          e76827bf1247   3 months ago     238MB
+myflaskapp                                   v2          e76827bf1247   3 months ago     238MB
+dishatribedy/pratical                        latest      42a77c24d4d2   3 months ago     82.4MB
+dishatribedy/myflaskapp                      v1          4b9403ec2116   3 months ago     238MB
+myflaskapp                                   v1          4b9403ec2116   3 months ago     238MB
+docker-nginx-flask                           latest      d6999ed9b01a   3 months ago     1.61GB
+docker-nginx-web                             latest      60f67c26232a   3 months ago     1.61GB
+cloudproject                                 latest      d7a0daa2c5dc   3 months ago     80.9MB
+my-site                                      latest      ccf23421c8f7   3 months ago     244MB
+mongo                                        latest      7245ffb851d1   3 months ago     1.22GB
+flask-hello-microservice                     latest      ea0be0f5921e   3 months ago     228MB
+<none>                                       <none>      553f64aecdc3   3 months ago     244MB
+<none>                                       <none>      66460d557b25   5 months ago     139MB
+gcr.io/k8s-minikube/kicbase                  v0.0.48     18b0fda1fa3d   6 months ago     1.73GB
+gcr.io/k8s-minikube/kicbase                  <none>      7171c97a5162   6 months ago     1.73GB
+hello-world                                  latest      56433a6be3fd   7 months ago     16.9kB
+httpd                                        alpine      07b2fabb7029   7 months ago     103MB
+busybox                                      latest      e3652a00a2fa   17 months ago    6.21MB
+philippaul/node-mongo-db                     01          05028c7ed2f1   2 years ago      1.61GB
+philippaul/node-mongo-db                     02          2cf9fd486cf6   2 years ago      1.61GB
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker login
+Authenticating with existing credentials... [Username: dishatribedy]
+
+i Info → To login with a different account, run 'docker logout' followed by 'docker login'
+
+
+Login Succeeded
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker push dishatribedy/ubuntu-apache-php:v1
+The push refers to repository [docker.io/dishatribedy/ubuntu-apache-php]
+8d8f1a657d34: Pushed 
+36bf709aa36d: Mounted from dishatribedy/ubuntu 
+v1: digest: sha256:60664b1bb61489e12c948122bf540f5975b31d4d599dfc520be35caa87855348 size: 751
+dishatribedy@Dishas-MacBook-Air-2 ~ % 
