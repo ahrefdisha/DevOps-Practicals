@@ -1,0 +1,176 @@
+# Unit 2 - Practical 03
+
+## Aim
+
+Create and run a MySQL Docker container using MySQL 8.x and access it using docker exec.
+
+## Step 1: Create Directory
+
+mkdir mysql-prac
+cd mysql-prac
+
+## Step 2: Create Dockerfile
+
+nano Dockerfile
+
+## Step 3: Dockerfile Content
+
+FROM mysql:8.1
+ENV MYSQL_ROOT_PASSWORD=root123
+ENV MYSQL_DATABASE=mydatabase
+ENV MYSQL_USER=admin
+ENV MYSQL_PASSWORD=root123
+EXPOSE 3306
+
+## Step 4: Build Image
+
+docker build -t mysql-demo .
+
+## Step 5: Run Container
+
+docker run -d --name mysql-container -p 3307:3306 mysql-demo
+
+## Step 6: Access Container
+
+docker exec -it mysql-container mysql -u root -p
+
+## Step 7: Show Databases
+
+SHOW DATABASES;
+
+## Step 8: Switch Database
+
+USE mydatabase;
+
+## Result
+
+MySQL container was successfully created and accessed. The database list was displayed and switched to mydatabase.
+
+
+##output
+
+dishatribedy@Dishas-MacBook-Air-2 ~ % mkdir mysql-prac
+
+dishatribedy@Dishas-MacBook-Air-2 ~ % cd mysql-prac
+dishatribedy@Dishas-MacBook-Air-2 mysql-prac % nano Dockerfile
+dishatribedy@Dishas-MacBook-Air-2 mysql-prac % ls
+Dockerfile
+dishatribedy@Dishas-MacBook-Air-2 mysql-prac % docker build -t mysql-demo .
+[+] Building 23.3s (6/6) FINISHED                                                                                                                                                    docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                                                                 0.0s
+ => => transferring dockerfile: 178B                                                                                                                                                                 0.0s
+ => [internal] load metadata for docker.io/library/mysql:8.1                                                                                                                                         3.6s
+ => [auth] library/mysql:pull token for registry-1.docker.io                                                                                                                                         0.0s
+ => [internal] load .dockerignore                                                                                                                                                                    0.0s
+ => => transferring context: 2B                                                                                                                                                                      0.0s
+ => [1/1] FROM docker.io/library/mysql:8.1@sha256:f61944ff3f2961363a4d22913b2ac581523273679d7e14dd26e8db8c9f571a7e                                                                                  15.2s
+ => => resolve docker.io/library/mysql:8.1@sha256:f61944ff3f2961363a4d22913b2ac581523273679d7e14dd26e8db8c9f571a7e                                                                                   0.0s
+ => => sha256:e39ec8f010eb75816ae2c21b014f7fdecffb48374079b6f1bce017214e2a45cd 43.67MB / 43.67MB                                                                                                    10.3s
+ => => sha256:9d193449aafd2e76aefe49f553ee2d007ed850656e18916b74c5d28057e6cfb7 912.97kB / 912.97kB                                                                                                   1.3s
+ => => sha256:d992bb39e209c72e87bf31c42c6b1a34210084f585778ab64dd129de5e2c2672 63.79MB / 63.79MB                                                                                                    14.9s
+ => => sha256:5b6dc73ec72424a05d131a7d8bbc28951e86bf53ebd4cd79a7d3777baacd5dd9 317B / 317B                                                                                                           1.4s
+ => => sha256:b65a5d7a2435a3664f7d77ed9e51646b62721b51396b27ff9d2853dd377ec76d 339B / 339B                                                                                                           0.7s
+ => => sha256:6ea497c74b15661c8dcda90c65a4d6878277fb00ba8ce6c4b71bab676b372c34 4.30MB / 4.30MB                                                                                                       1.9s
+ => => sha256:cef9fb0078a5e4eb83b7675f763bcf1e93ba403dd95139d00679313915b83831 57.70MB / 57.70MB                                                                                                    13.2s
+ => => sha256:7778acbf55f327acde293ae0092a016ebf0324943d47aa131140a802397301d2 2.61kB / 2.61kB                                                                                                       0.6s
+ => => sha256:e2b7fadc33ecff9fcb4c6067c675ad7d14bb8b71f383f243e558ae552cf8da05 883B / 883B                                                                                                           0.7s
+ => => sha256:4431432b89a3ffd8f9dafe35d1a3c42ceb8caa0f23eda1f67b2e29eabf00412a 5.39kB / 5.39kB                                                                                                       1.1s
+ => exporting to image                                                                                                                                                                              19.4s
+ => => exporting layers                                                                                                                                                                              0.0s
+ => => exporting manifest sha256:d39ff58e6710ceeeea1a5cc6285805b00eba1c6be1ad8b779758d97bdc89e332                                                                                                    0.0s
+ => => exporting config sha256:929ef93a8e260443f093bc76df84f5e3d9b790a2ce4854560672e0ec6502b3b4                                                                                                      0.0s
+ => => exporting attestation manifest sha256:49fce6dc87edf5b5d533c51f628ff3b4d32209974db3ca8839851d97bd5b8bfc                                                                                        0.0s
+ => => exporting manifest list sha256:7ede14584684b6e37de5f3ba0022582c577730c7bff88c80407c8f75bfb7f057                                                                                               0.0s
+ => => naming to docker.io/library/mysql-demo:latest                                                                                                                                                 0.0s
+ => => unpacking to docker.io/library/mysql-demo:latest                                                                                                                                             19.4s
+
+ 2 warnings found (use docker --debug to expand):
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "MYSQL_ROOT_PASSWORD") (line 3)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "MYSQL_PASSWORD") (line 6)
+dishatribedy@Dishas-MacBook-Air-2 mysql-prac % docker images
+REPOSITORY                                   TAG         IMAGE ID       CREATED          SIZE
+ubuntu-php-echo                              latest      c9ae005c9e82   6 minutes ago    346MB
+dishatribedy/ubuntu-apache-php               v1          60664b1bb614   13 minutes ago   453MB
+dishatribedy/alpine-php-installed            v1          b16aaf7a25eb   45 minutes ago   31MB
+<none>                                       <none>      a8a5645920f8   53 minutes ago   31MB
+devtask-manager-frontend                     latest      87bcf1d2380d   4 days ago       94.1MB
+devtask-manager-backend                      latest      a0a603e3c176   4 days ago       298MB
+postgres                                     15-alpine   fceb6f86328c   11 days ago      386MB
+httpd                                        latest      96b1e8f69ee3   13 days ago      205MB
+ghcr.io/ahrefdisha/docker-flask              latest      5ac9bab39c11   2 weeks ago      236MB
+ghcr.io/ahrefdisha/sql_1612                  latest      320d4c3ffe26   2 weeks ago      1.06GB
+ghcr.io/ahrefdisha/sql_1612                  v1          320d4c3ffe26   2 weeks ago      1.06GB
+ghcr.io/ahrefdisha/ghcr-demo                 latest      6a4f2417cfaf   2 weeks ago      270MB
+python11                                     latest      1dc31f39ad8d   2 weeks ago      236MB
+ubuntu-demo                                  latest      ce92ceb410e0   3 weeks ago      450MB
+ubuntu-php                                   latest      b96ec885031b   3 weeks ago      451MB
+dishatribedy/alpine-php                      v1          25109184c71b   5 weeks ago      13.6MB
+alpine                                       latest      25109184c71b   5 weeks ago      13.6MB
+dishatribedy/ubuntu                          latest      0406aba87cff   7 weeks ago      139MB
+ubuntu                                       latest      cd1dba651b30   7 weeks ago      139MB
+microservices-project-order-service          latest      d85bd4e04a97   2 months ago     202MB
+microservices-project-notification-service   latest      c8124c952eb1   2 months ago     192MB
+microservices-project-product-service        latest      f384ea9a1283   2 months ago     192MB
+nginx                                        latest      fb01117203ff   2 months ago     244MB
+dishatribedy/myflaskapp                      v3          18e90a3b7627   3 months ago     238MB
+myflaskapp                                   v3          18e90a3b7627   3 months ago     238MB
+dishatribedy/myflaskapp                      v2          e76827bf1247   3 months ago     238MB
+myflaskapp                                   v2          e76827bf1247   3 months ago     238MB
+dishatribedy/pratical                        latest      42a77c24d4d2   3 months ago     82.4MB
+dishatribedy/myflaskapp                      v1          4b9403ec2116   3 months ago     238MB
+myflaskapp                                   v1          4b9403ec2116   3 months ago     238MB
+docker-nginx-flask                           latest      d6999ed9b01a   3 months ago     1.61GB
+docker-nginx-web                             latest      60f67c26232a   3 months ago     1.61GB
+cloudproject                                 latest      d7a0daa2c5dc   3 months ago     80.9MB
+my-site                                      latest      ccf23421c8f7   3 months ago     244MB
+mongo                                        latest      7245ffb851d1   3 months ago     1.22GB
+flask-hello-microservice                     latest      ea0be0f5921e   3 months ago     228MB
+<none>                                       <none>      553f64aecdc3   3 months ago     244MB
+<none>                                       <none>      66460d557b25   5 months ago     139MB
+gcr.io/k8s-minikube/kicbase                  <none>      7171c97a5162   6 months ago     1.73GB
+gcr.io/k8s-minikube/kicbase                  v0.0.48     18b0fda1fa3d   6 months ago     1.73GB
+hello-world                                  latest      56433a6be3fd   7 months ago     16.9kB
+httpd                                        alpine      07b2fabb7029   7 months ago     103MB
+busybox                                      latest      e3652a00a2fa   17 months ago    6.21MB
+philippaul/node-mongo-db                     01          05028c7ed2f1   2 years ago      1.61GB
+philippaul/node-mongo-db                     02          2cf9fd486cf6   2 years ago      1.61GB
+mysql-demo                                   latest      7ede14584684   2 years ago      813MB
+dishatribedy@Dishas-MacBook-Air-2 mysql-prac % docker run -d --name mysql-container -p 3307:3306 mysql-demo
+679fa6a9b42901047cd000eb0f82f4f141211ba4b58c278905c7f3dad3fc99fd
+dishatribedy@Dishas-MacBook-Air-2 mysql-prac % docker ps
+CONTAINER ID   IMAGE                COMMAND                  CREATED             STATUS             PORTS                                         NAMES
+679fa6a9b429   mysql-demo           "docker-entrypoint.s…"   6 seconds ago       Up 5 seconds       0.0.0.0:3307->3306/tcp, [::]:3307->3306/tcp   mysql-container
+fc81be5b7cbe   nginx                "/docker-entrypoint.…"   About an hour ago   Up About an hour   0.0.0.0:8081->80/tcp, [::]:8081->80/tcp       nginx-web
+44c24ff7cdba   mongo                "docker-entrypoint.s…"   About an hour ago   Up About an hour   0.0.0.0:80->8082/tcp, [::]:80->8082/tcp       DB-app
+c12b29faa8f9   mongo:latest         "docker-entrypoint.s…"   2 months ago        Up 2 hours         27017/tcp                                     mongo_db
+acd6416992e2   docker-nginx-flask   "python app.py"          3 months ago        Up 2 hours         0.0.0.0:5002->5000/tcp, [::]:5002->5000/tcp   flask-app
+67397233a84d   553f64aecdc3         "/docker-entrypoint.…"   3 months ago        Up 2 hours         0.0.0.0:7136->80/tcp, [::]:7136->80/tcp       nginx-app
+dishatribedy@Dishas-MacBook-Air-2 mysql-prac % docker exec -it mysql-container mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.1.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mydatabase         |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.03 sec)
+
+mysql> USE mydatabase;
+Database changed
+mysql> 
