@@ -1,0 +1,33 @@
+# Unit 1 - Task 02
+
+## Objective
+Run MongoDB and Nginx containers with port mapping.
+
+## Commands Used
+
+### MongoDB Container
+
+docker run -d -p 80:8082 --name DB-app mongo
+
+docker ps
+
+### Nginx Container
+
+docker run -it -p 8080:8080 nginx bash
+
+exit
+
+## output
+
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker run -d -p 80:8082 --name DB-app mongo
+44c24ff7cdbadb8ff31ee91ba2d3ea0fd03d4e0be64ab8f2109b5e1c2419ce35
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker ps
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS          PORTS                                         NAMES
+44c24ff7cdba   mongo                "docker-entrypoint.s…"   10 seconds ago   Up 9 seconds    0.0.0.0:80->8082/tcp, [::]:80->8082/tcp       DB-app
+c12b29faa8f9   mongo:latest         "docker-entrypoint.s…"   2 months ago     Up 18 minutes   27017/tcp                                     mongo_db
+acd6416992e2   docker-nginx-flask   "python app.py"          3 months ago     Up 18 minutes   0.0.0.0:5002->5000/tcp, [::]:5002->5000/tcp   flask-app
+67397233a84d   553f64aecdc3         "/docker-entrypoint.…"   3 months ago     Up 18 minutes   0.0.0.0:7136->80/tcp, [::]:7136->80/tcp       nginx-app
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker run -it -p 8080:8080 nginx bash
+root@4e0b39666fd2:/# exit
+exit
+dishatribedy@Dishas-MacBook-Air-2 ~ % 
