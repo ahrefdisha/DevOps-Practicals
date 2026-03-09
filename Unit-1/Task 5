@@ -1,0 +1,259 @@
+Pull, Tag, Push Docker Image and Create New Image with Installed Software
+Aim
+
+To demonstrate how to pull a Docker image, tag it, push it to Docker Hub, install software inside a running container, verify the installation, and save the changes using Docker commit.
+
+Step 1: Pull Alpine Image
+docker pull alpine
+Step 2: Tag the Alpine Image
+docker tag alpine dishatribedy/alpine-php:v1
+Step 3: Login to Docker Hub
+docker login
+Step 4: Push Image to Docker Hub
+docker push dishatribedy/alpine-php:v1
+Step 5: Run the Image Interactively
+docker run -it alpine sh
+Step 6: Update Package Index
+apk update
+Step 7: Install PHP
+apk add php
+Step 8: Verify PHP Installation
+php -v
+Step 9: Exit the Container
+exit
+Step 10: Commit Container Changes to New Image
+docker commit fab6f3a8adc8 dishatribedy/alpine-php-installed:v1
+Result
+
+The Alpine Docker image was successfully pulled, tagged, pushed to Docker Hub, and modified by installing PHP inside a container. The changes were saved as a new Docker image using the docker commit command.
+
+##output
+
+
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker pull alpine
+Using default tag: latest
+latest: Pulling from library/alpine
+Digest: sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659
+Status: Downloaded newer image for alpine:latest
+docker.io/library/alpine:latest
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker images
+REPOSITORY                                   TAG         IMAGE ID       CREATED         SIZE
+devtask-manager-frontend                     latest      87bcf1d2380d   4 days ago      94.1MB
+devtask-manager-backend                      latest      a0a603e3c176   4 days ago      298MB
+postgres                                     15-alpine   fceb6f86328c   10 days ago     386MB
+httpd                                        latest      96b1e8f69ee3   12 days ago     205MB
+ghcr.io/ahrefdisha/docker-flask              latest      5ac9bab39c11   2 weeks ago     236MB
+ghcr.io/ahrefdisha/sql_1612                  latest      320d4c3ffe26   2 weeks ago     1.06GB
+ghcr.io/ahrefdisha/sql_1612                  v1          320d4c3ffe26   2 weeks ago     1.06GB
+ghcr.io/ahrefdisha/ghcr-demo                 latest      6a4f2417cfaf   2 weeks ago     270MB
+python11                                     latest      1dc31f39ad8d   2 weeks ago     236MB
+ubuntu-demo                                  latest      ce92ceb410e0   3 weeks ago     450MB
+ubuntu-php                                   latest      b96ec885031b   3 weeks ago     451MB
+alpine                                       latest      25109184c71b   5 weeks ago     13.6MB
+ubuntu                                       latest      cd1dba651b30   7 weeks ago     139MB
+dishatribedy/ubuntu                          latest      0406aba87cff   7 weeks ago     139MB
+microservices-project-order-service          latest      d85bd4e04a97   2 months ago    202MB
+microservices-project-notification-service   latest      c8124c952eb1   2 months ago    192MB
+microservices-project-product-service        latest      f384ea9a1283   2 months ago    192MB
+nginx                                        latest      fb01117203ff   2 months ago    244MB
+dishatribedy/myflaskapp                      v3          18e90a3b7627   3 months ago    238MB
+myflaskapp                                   v3          18e90a3b7627   3 months ago    238MB
+dishatribedy/myflaskapp                      v2          e76827bf1247   3 months ago    238MB
+myflaskapp                                   v2          e76827bf1247   3 months ago    238MB
+dishatribedy/pratical                        latest      42a77c24d4d2   3 months ago    82.4MB
+dishatribedy/myflaskapp                      v1          4b9403ec2116   3 months ago    238MB
+myflaskapp                                   v1          4b9403ec2116   3 months ago    238MB
+docker-nginx-flask                           latest      d6999ed9b01a   3 months ago    1.61GB
+docker-nginx-web                             latest      60f67c26232a   3 months ago    1.61GB
+cloudproject                                 latest      d7a0daa2c5dc   3 months ago    80.9MB
+my-site                                      latest      ccf23421c8f7   3 months ago    244MB
+mongo                                        latest      7245ffb851d1   3 months ago    1.22GB
+flask-hello-microservice                     latest      ea0be0f5921e   3 months ago    228MB
+<none>                                       <none>      553f64aecdc3   3 months ago    244MB
+<none>                                       <none>      66460d557b25   5 months ago    139MB
+gcr.io/k8s-minikube/kicbase                  <none>      7171c97a5162   6 months ago    1.73GB
+gcr.io/k8s-minikube/kicbase                  v0.0.48     18b0fda1fa3d   6 months ago    1.73GB
+hello-world                                  latest      56433a6be3fd   7 months ago    16.9kB
+httpd                                        alpine      07b2fabb7029   7 months ago    103MB
+busybox                                      latest      e3652a00a2fa   17 months ago   6.21MB
+philippaul/node-mongo-db                     01          05028c7ed2f1   2 years ago     1.61GB
+philippaul/node-mongo-db                     02          2cf9fd486cf6   2 years ago     1.61GB
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker tag alpine dishatribedy/alpine-php:v1
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker images
+REPOSITORY                                   TAG         IMAGE ID       CREATED         SIZE
+devtask-manager-frontend                     latest      87bcf1d2380d   4 days ago      94.1MB
+devtask-manager-backend                      latest      a0a603e3c176   4 days ago      298MB
+postgres                                     15-alpine   fceb6f86328c   10 days ago     386MB
+httpd                                        latest      96b1e8f69ee3   13 days ago     205MB
+ghcr.io/ahrefdisha/docker-flask              latest      5ac9bab39c11   2 weeks ago     236MB
+ghcr.io/ahrefdisha/sql_1612                  latest      320d4c3ffe26   2 weeks ago     1.06GB
+ghcr.io/ahrefdisha/sql_1612                  v1          320d4c3ffe26   2 weeks ago     1.06GB
+ghcr.io/ahrefdisha/ghcr-demo                 latest      6a4f2417cfaf   2 weeks ago     270MB
+python11                                     latest      1dc31f39ad8d   2 weeks ago     236MB
+ubuntu-demo                                  latest      ce92ceb410e0   3 weeks ago     450MB
+ubuntu-php                                   latest      b96ec885031b   3 weeks ago     451MB
+alpine                                       latest      25109184c71b   5 weeks ago     13.6MB
+dishatribedy/alpine-php                      v1          25109184c71b   5 weeks ago     13.6MB
+ubuntu                                       latest      cd1dba651b30   7 weeks ago     139MB
+dishatribedy/ubuntu                          latest      0406aba87cff   7 weeks ago     139MB
+microservices-project-order-service          latest      d85bd4e04a97   2 months ago    202MB
+microservices-project-notification-service   latest      c8124c952eb1   2 months ago    192MB
+microservices-project-product-service        latest      f384ea9a1283   2 months ago    192MB
+nginx                                        latest      fb01117203ff   2 months ago    244MB
+dishatribedy/myflaskapp                      v3          18e90a3b7627   3 months ago    238MB
+myflaskapp                                   v3          18e90a3b7627   3 months ago    238MB
+dishatribedy/myflaskapp                      v2          e76827bf1247   3 months ago    238MB
+myflaskapp                                   v2          e76827bf1247   3 months ago    238MB
+dishatribedy/pratical                        latest      42a77c24d4d2   3 months ago    82.4MB
+dishatribedy/myflaskapp                      v1          4b9403ec2116   3 months ago    238MB
+myflaskapp                                   v1          4b9403ec2116   3 months ago    238MB
+docker-nginx-flask                           latest      d6999ed9b01a   3 months ago    1.61GB
+docker-nginx-web                             latest      60f67c26232a   3 months ago    1.61GB
+cloudproject                                 latest      d7a0daa2c5dc   3 months ago    80.9MB
+my-site                                      latest      ccf23421c8f7   3 months ago    244MB
+mongo                                        latest      7245ffb851d1   3 months ago    1.22GB
+flask-hello-microservice                     latest      ea0be0f5921e   3 months ago    228MB
+<none>                                       <none>      553f64aecdc3   3 months ago    244MB
+<none>                                       <none>      66460d557b25   5 months ago    139MB
+gcr.io/k8s-minikube/kicbase                  <none>      7171c97a5162   6 months ago    1.73GB
+gcr.io/k8s-minikube/kicbase                  v0.0.48     18b0fda1fa3d   6 months ago    1.73GB
+hello-world                                  latest      56433a6be3fd   7 months ago    16.9kB
+httpd                                        alpine      07b2fabb7029   7 months ago    103MB
+busybox                                      latest      e3652a00a2fa   17 months ago   6.21MB
+philippaul/node-mongo-db                     01          05028c7ed2f1   2 years ago     1.61GB
+philippaul/node-mongo-db                     02          2cf9fd486cf6   2 years ago     1.61GB
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker login
+Authenticating with existing credentials... [Username: dishatribedy]
+
+i Info → To login with a different account, run 'docker logout' followed by 'docker login'
+
+
+Login Succeeded
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker push dishatribedy/alpine-php:v1
+The push refers to repository [docker.io/dishatribedy/alpine-php]
+d8ad8cd72600: Mounted from library/postgres 
+v1: digest: sha256:1529d13528ed05668b2038ffab807ac8633ad6adfe6be8901adda62411f70d29 size: 1025
+
+i Info → Not all multiplatform-content is present and only the available single-platform image was pushed
+         sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659 -> sha256:1529d13528ed05668b2038ffab807ac8633ad6adfe6be8901adda62411f70d29
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker run -it alpine sh
+/ # apk update
+v3.23.3-260-gd483e0429d3 [https://dl-cdn.alpinelinux.org/alpine/v3.23/main]
+v3.23.3-264-g3c667a8387d [https://dl-cdn.alpinelinux.org/alpine/v3.23/community]
+OK: 27430 distinct packages available
+/ # php -v
+sh: php: not found
+/ # apk add php
+(1/9) Installing php84-common (8.4.18-r0)
+(2/9) Installing argon2-libs (20190702-r5)
+(3/9) Installing ncurses-terminfo-base (6.5_p20251123-r0)
+(4/9) Installing libncursesw (6.5_p20251123-r0)
+(5/9) Installing libedit (20251016.3.1-r0)
+(6/9) Installing pcre2 (10.47-r0)
+(7/9) Installing xz-libs (5.8.2-r0)
+(8/9) Installing libxml2 (2.13.9-r0)
+(9/9) Installing php84 (8.4.18-r0)
+Executing busybox-1.37.0-r30.trigger
+OK: 16.0 MiB in 25 packages
+/ # php -v
+PHP 8.4.18 (cli) (built: Mar  2 2026 11:55:35) (NTS)
+Copyright (c) The PHP Group
+Built by Alpine Linux aports
+Zend Engine v4.4.18, Copyright (c) Zend Technologies
+/ # exit
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker ps -a
+CONTAINER ID   IMAGE                                          COMMAND                  CREATED              STATUS                      PORTS                                         NAMES
+fab6f3a8adc8   alpine                                         "sh"                     About a minute ago   Exited (0) 10 seconds ago                                                 nice_lichterman
+4acf4f5a8543   ubuntu                                         "bash"                   10 minutes ago       Exited (0) 8 minutes ago                                                  volume-container
+fc81be5b7cbe   nginx                                          "/docker-entrypoint.…"   16 minutes ago       Up 16 minutes               0.0.0.0:8081->80/tcp, [::]:8081->80/tcp       nginx-web
+4e0b39666fd2   nginx                                          "/docker-entrypoint.…"   18 minutes ago       Exited (0) 18 minutes ago                                                 competent_ramanujan
+44c24ff7cdba   mongo                                          "docker-entrypoint.s…"   19 minutes ago       Up 19 minutes               0.0.0.0:80->8082/tcp, [::]:80->8082/tcp       DB-app
+589234323bf0   ubuntu                                         "bash"                   37 minutes ago       Exited (0) 35 minutes ago                                                 determined_dhawan
+d864ac8dad72   devtask-manager-frontend                       "/docker-entrypoint.…"   4 days ago           Exited (0) 4 days ago                                                     devtask-manager-frontend-1
+e357846a7a32   devtask-manager-backend                        "docker-entrypoint.s…"   4 days ago           Exited (137) 4 days ago                                                   devtask-manager-backend-1
+5ac093017fdf   postgres:15-alpine                             "docker-entrypoint.s…"   4 days ago           Exited (0) 4 days ago                                                     devtask-manager-db-1
+363e45fe2da9   httpd:latest                                   "httpd-foreground"       4 days ago           Exited (0) 4 days ago                                                     compose1-web-1
+11dd2c67b435   ubuntu                                         "/bin/bash"              12 days ago          Exited (137) 12 days ago                                                  task1
+31ecf8202c52   ghcr.io/ahrefdisha/ghcr-demo                   "echo 'Hello from GH…"   2 weeks ago          Exited (0) 2 weeks ago                                                    peaceful_lehmann
+5929bf19f207   ghcr.io/ahrefdisha/ghcr-demo                   "echo 'Hello from GH…"   2 weeks ago          Exited (0) 2 weeks ago                                                    ghcr-test
+54c4d81a1fd0   python11                                       "python app.py"          2 weeks ago          Exited (0) 2 weeks ago                                                    zen_wright
+a5b1785e3d6f   e9754cb39b3c                                   "python app.py"          2 weeks ago          Exited (1) 2 weeks ago                                                    kind_liskov
+3aacdd56e0e5   e9754cb39b3c                                   "python app.py"          2 weeks ago          Exited (1) 2 weeks ago                                                    cranky_shockley
+970f3276d59b   e9754cb39b3c                                   "python app.py"          2 weeks ago          Created                                                                   gifted_merkle
+641b87ec7827   ubuntu-demo                                    "bash"                   3 weeks ago          Exited (137) 3 weeks ago                                                  peaceful_babbage
+3ee24d52cea6   ubuntu-demo                                    "echo 'Hello Student…"   3 weeks ago          Exited (0) 3 weeks ago                                                    vigilant_clarke
+07a03e33d198   dishatribedy/ubuntu:latest                     "/bin/bash"              3 weeks ago          Exited (127) 3 weeks ago                                                  aa
+c69211709744   ubuntu-php                                     "/bin/bash"              3 weeks ago          Exited (137) 3 weeks ago                                                  bb
+2f281984e10a   microservices-project-product-service:latest   "docker-entrypoint.s…"   6 weeks ago          Exited (137) 6 weeks ago                                                  keen_ritchie
+35ece4963220   ubuntu                                         "/bin/bash"              6 weeks ago          Exited (0) 6 weeks ago                                                    relaxed_newton
+62580f1b6780   microservices-project-product-service:latest   "docker-entrypoint.s…"   6 weeks ago          Exited (137) 6 weeks ago                                                  cranky_buck
+0f08ecd3e537   philippaul/node-mongo-db:01                    "docker-entrypoint.s…"   2 months ago         Exited (137) 4 days ago                                                   node_app
+c12b29faa8f9   mongo:latest                                   "docker-entrypoint.s…"   2 months ago         Up 37 minutes               27017/tcp                                     mongo_db
+e0b7b8a8c9b1   microservices-project-order-service            "docker-entrypoint.s…"   2 months ago         Exited (137) 2 months ago                                                 order-service
+ad8200614821   microservices-project-product-service          "docker-entrypoint.s…"   2 months ago         Exited (137) 2 months ago                                                 product-service
+1614c2cd25ba   microservices-project-notification-service     "docker-entrypoint.s…"   2 months ago         Exited (137) 2 months ago                                                 notification-service
+59c661232b16   mongo                                          "docker-entrypoint.s…"   3 months ago         Exited (0) 3 months ago                                                   my-mongo
+f178e521168f   philippaul/node-mongo-db:02                    "docker-entrypoint.s…"   3 months ago         Exited (1) 3 months ago                                                   my-node
+6e605d073d89   e6e832191015                                   "python app.py"          3 months ago         Exited (0) 3 months ago                                                   infallible_colden
+0982f42efef9   e6e832191015                                   "python app.py"          3 months ago         Exited (0) 3 months ago                                                   lucid_jennings
+c392e9825ac6   e6e832191015                                   "python app.py"          3 months ago         Created                                                                   heuristic_banzai
+1171ee66a870   e6e832191015                                   "python app.py"          3 months ago         Created                                                                   happy_poitras
+0b66f9b6b9c0   d6999ed9b01a                                   "python app.py"          3 months ago         Exited (0) 3 months ago                                                   magical_brattain
+acd6416992e2   docker-nginx-flask                             "python app.py"          3 months ago         Up 37 minutes               0.0.0.0:5002->5000/tcp, [::]:5002->5000/tcp   flask-app
+67397233a84d   553f64aecdc3                                   "/docker-entrypoint.…"   3 months ago         Up 37 minutes               0.0.0.0:7136->80/tcp, [::]:7136->80/tcp       nginx-app
+55c2f2810358   httpd:alpine                                   "httpd-foreground"       3 months ago         Exited (255) 3 months ago   0.0.0.0:8082->80/tcp                          d12
+d241c5426018   httpd:alpine                                   "httpd-foreground"       3 months ago         Exited (255) 3 months ago   0.0.0.0:8081->80/tcp                          d11
+8e9fc047703c   gcr.io/k8s-minikube/kicbase:v0.0.48            "/usr/local/bin/entr…"   3 months ago         Exited (137) 4 days ago                                                   minikube
+2a4f9149f98f   cloudproject                                   "/docker-entrypoint.…"   3 months ago         Exited (0) 3 months ago                                                   optimistic_roentgen
+eb0f92b86589   flask-hello-microservice                       "python app.py"          3 months ago         Exited (255) 3 months ago   0.0.0.0:5001->5000/tcp                        infallible_dhawan
+f2889a5ae0f4   busybox                                        "sh"                     3 months ago         Exited (255) 3 months ago                                                 c3
+c031fa4fb1fa   busybox                                        "sh"                     3 months ago         Exited (255) 3 months ago                                                 c2
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker commit CONTAINER_ID dishatribedy/alpine-php-installed:v1
+Error response from daemon: No such container: CONTAINER_ID
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker commit fab6f3a8adc8 dishatribedy/alpine-php-installed:v1
+sha256:a8a5645920f8f9bba5ef950c8640e0af561674c08b762e1dcae292c2a45b870c
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker images
+REPOSITORY                                   TAG         IMAGE ID       CREATED          SIZE
+dishatribedy/alpine-php-installed            v1          a8a5645920f8   10 seconds ago   31MB
+devtask-manager-frontend                     latest      87bcf1d2380d   4 days ago       94.1MB
+devtask-manager-backend                      latest      a0a603e3c176   4 days ago       298MB
+postgres                                     15-alpine   fceb6f86328c   10 days ago      386MB
+httpd                                        latest      96b1e8f69ee3   13 days ago      205MB
+ghcr.io/ahrefdisha/docker-flask              latest      5ac9bab39c11   2 weeks ago      236MB
+ghcr.io/ahrefdisha/sql_1612                  latest      320d4c3ffe26   2 weeks ago      1.06GB
+ghcr.io/ahrefdisha/sql_1612                  v1          320d4c3ffe26   2 weeks ago      1.06GB
+ghcr.io/ahrefdisha/ghcr-demo                 latest      6a4f2417cfaf   2 weeks ago      270MB
+python11                                     latest      1dc31f39ad8d   2 weeks ago      236MB
+ubuntu-demo                                  latest      ce92ceb410e0   3 weeks ago      450MB
+ubuntu-php                                   latest      b96ec885031b   3 weeks ago      451MB
+dishatribedy/alpine-php                      v1          25109184c71b   5 weeks ago      13.6MB
+alpine                                       latest      25109184c71b   5 weeks ago      13.6MB
+ubuntu                                       latest      cd1dba651b30   7 weeks ago      139MB
+dishatribedy/ubuntu                          latest      0406aba87cff   7 weeks ago      139MB
+microservices-project-order-service          latest      d85bd4e04a97   2 months ago     202MB
+microservices-project-notification-service   latest      c8124c952eb1   2 months ago     192MB
+microservices-project-product-service        latest      f384ea9a1283   2 months ago     192MB
+nginx                                        latest      fb01117203ff   2 months ago     244MB
+dishatribedy/myflaskapp                      v3          18e90a3b7627   3 months ago     238MB
+myflaskapp                                   v3          18e90a3b7627   3 months ago     238MB
+dishatribedy/myflaskapp                      v2          e76827bf1247   3 months ago     238MB
+myflaskapp                                   v2          e76827bf1247   3 months ago     238MB
+dishatribedy/pratical                        latest      42a77c24d4d2   3 months ago     82.4MB
+dishatribedy/myflaskapp                      v1          4b9403ec2116   3 months ago     238MB
+myflaskapp                                   v1          4b9403ec2116   3 months ago     238MB
+docker-nginx-flask                           latest      d6999ed9b01a   3 months ago     1.61GB
+docker-nginx-web                             latest      60f67c26232a   3 months ago     1.61GB
+cloudproject                                 latest      d7a0daa2c5dc   3 months ago     80.9MB
+my-site                                      latest      ccf23421c8f7   3 months ago     244MB
+mongo                                        latest      7245ffb851d1   3 months ago     1.22GB
+flask-hello-microservice                     latest      ea0be0f5921e   3 months ago     228MB
+<none>                                       <none>      553f64aecdc3   3 months ago     244MB
+<none>                                       <none>      66460d557b25   5 months ago     139MB
+gcr.io/k8s-minikube/kicbase                  <none>      7171c97a5162   6 months ago     1.73GB
+gcr.io/k8s-minikube/kicbase                  v0.0.48     18b0fda1fa3d   6 months ago     1.73GB
+hello-world                                  latest      56433a6be3fd   7 months ago     16.9kB
+httpd                                        alpine      07b2fabb7029   7 months ago     103MB
+busybox                                      latest      e3652a00a2fa   17 months ago    6.21MB
+philippaul/node-mongo-db                     01          05028c7ed2f1   2 years ago      1.61GB
+philippaul/node-mongo-db                     02          2cf9fd486cf6   2 years ago      1.61GB
+dishatribedy@Dishas-MacBook-Air-2 ~ % 
