@@ -1,0 +1,29 @@
+# Unit 1 - Task 03
+
+## Aim
+To run an Nginx web server inside a Docker container and access it from the local machine using port mapping.
+
+## Command Used
+
+docker run -d -p 8081:80 --name nginx-web nginx
+
+docker ps
+
+## Access URL
+
+http://localhost:8081
+
+##output
+
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker --version
+Docker version 28.5.1, build e180ab8
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker run -d -p 8081:80 --name nginx-web nginx
+fc81be5b7cbea6434a5894b7f995a676d0c355b3a8b5625340dbc9e757ec6808
+dishatribedy@Dishas-MacBook-Air-2 ~ % docker ps
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS          PORTS                                         NAMES
+fc81be5b7cbe   nginx                "/docker-entrypoint.…"   14 seconds ago   Up 13 seconds   0.0.0.0:8081->80/tcp, [::]:8081->80/tcp       nginx-web
+44c24ff7cdba   mongo                "docker-entrypoint.s…"   3 minutes ago    Up 3 minutes    0.0.0.0:80->8082/tcp, [::]:80->8082/tcp       DB-app
+c12b29faa8f9   mongo:latest         "docker-entrypoint.s…"   2 months ago     Up 21 minutes   27017/tcp                                     mongo_db
+acd6416992e2   docker-nginx-flask   "python app.py"          3 months ago     Up 21 minutes   0.0.0.0:5002->5000/tcp, [::]:5002->5000/tcp   flask-app
+67397233a84d   553f64aecdc3         "/docker-entrypoint.…"   3 months ago     Up 21 minutes   0.0.0.0:7136->80/tcp, [::]:7136->80/tcp       nginx-app
+dishatribedy@Dishas-MacBook-Air-2 ~ % 
