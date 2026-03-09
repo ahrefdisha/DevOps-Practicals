@@ -1,0 +1,333 @@
+# Unit 2 - Practical 05
+
+## Aim
+
+Working with GitHub Container Registry (GHCR) by building a Docker image and pushing it to GitHub.
+
+## Step 1: Create Directory
+
+mkdir ghcr-demo
+cd ghcr-demo
+
+## Step 2: Create Files
+
+touch index.html Dockerfile
+
+## Step 3: Add HTML Content
+
+<h1>Hello from GitHub Container Registry</h1>
+
+## Step 4: Dockerfile Content
+
+FROM nginx:latest
+COPY index.html /usr/share/nginx/html/index.html
+
+## Step 5: Build Docker Image
+
+docker build -t ghcr.io/ahrefdisha/ghcr-demo:v1 .
+
+## Step 6: Login to GHCR
+
+docker login ghcr.io
+
+## Step 7: Push Image to GitHub Container Registry
+
+docker push ghcr.io/ahrefdisha/ghcr-demo:v1
+
+## Step 8: Remove Local Image
+
+docker rmi ghcr.io/ahrefdisha/ghcr-demo:v1
+
+## Step 9: Pull Image from GHCR
+
+docker pull ghcr.io/ahrefdisha/ghcr-demo:v1
+
+## Result
+
+The Docker image was successfully built and pushed to GitHub Container Registry and later pulled back to the local machine.
+
+##output
+
+dishatribedy@Dishas-MacBook-Air-2 ~ % mkdir ghcr-demo2
+dishatribedy@Dishas-MacBook-Air-2 ~ % cd ghcr-demo2
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % touch index.html Dockerfile
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % nano index.html
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % nano Dockerfile
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % ls
+Dockerfile	index.html
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % docker build -t ghcr.io/dishatribedy/ghcr-demo:v1 .
+[+] Building 0.3s (7/7) FINISHED                                                                                                                                                     docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                                                                 0.0s
+ => => transferring dockerfile: 104B                                                                                                                                                                 0.0s
+ => [internal] load metadata for docker.io/library/nginx:latest                                                                                                                                      0.0s
+ => [internal] load .dockerignore                                                                                                                                                                    0.0s
+ => => transferring context: 2B                                                                                                                                                                      0.0s
+ => [internal] load build context                                                                                                                                                                    0.0s
+ => => transferring context: 83B                                                                                                                                                                     0.0s
+ => [1/2] FROM docker.io/library/nginx:latest@sha256:fb01117203ff38c2f9af91db1a7409459182a37c87cced5cb442d1d8fcc66d19                                                                                0.0s
+ => => resolve docker.io/library/nginx:latest@sha256:fb01117203ff38c2f9af91db1a7409459182a37c87cced5cb442d1d8fcc66d19                                                                                0.0s
+ => [2/2] COPY index.html /usr/share/nginx/html/index.html                                                                                                                                           0.0s
+ => exporting to image                                                                                                                                                                               0.1s
+ => => exporting layers                                                                                                                                                                              0.0s
+ => => exporting manifest sha256:9e51076ca66a0b6ce40296af7ddf39d37c71b55aa564a45f1356024fb06023db                                                                                                    0.0s
+ => => exporting config sha256:664b3212fd15c7ce68c51d4ac04419bbb5d6e4a271d21e0e3663d99aff9eae5c                                                                                                      0.0s
+ => => exporting attestation manifest sha256:f147522dfcab10033ffe62b6b564c4e13bc15c4fcc2710521b106fa5b8e8ad25                                                                                        0.0s
+ => => exporting manifest list sha256:99e04756e74869b2e8b6a63ccaed7f43c358cf5c4231c542aed62c7edcbba4f0                                                                                               0.0s
+ => => naming to ghcr.io/dishatribedy/ghcr-demo:v1                                                                                                                                                   0.0s
+ => => unpacking to ghcr.io/dishatribedy/ghcr-demo:v1                                                                                                                                                0.0s
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % docker images
+REPOSITORY                                   TAG         IMAGE ID       CREATED          SIZE
+ghcr.io/dishatribedy/ghcr-demo               v1          99e04756e748   25 seconds ago   244MB
+ubuntu-php-echo                              latest      c9ae005c9e82   11 minutes ago   346MB
+dishatribedy/ubuntu-apache-php               v1          60664b1bb614   19 minutes ago   453MB
+dishatribedy/alpine-php-installed            v1          b16aaf7a25eb   50 minutes ago   31MB
+<none>                                       <none>      a8a5645920f8   58 minutes ago   31MB
+devtask-manager-frontend                     latest      87bcf1d2380d   4 days ago       94.1MB
+devtask-manager-backend                      latest      a0a603e3c176   4 days ago       298MB
+postgres                                     15-alpine   fceb6f86328c   11 days ago      386MB
+httpd                                        latest      96b1e8f69ee3   13 days ago      205MB
+ghcr.io/ahrefdisha/docker-flask              latest      5ac9bab39c11   2 weeks ago      236MB
+ghcr.io/ahrefdisha/sql_1612                  latest      320d4c3ffe26   2 weeks ago      1.06GB
+ghcr.io/ahrefdisha/sql_1612                  v1          320d4c3ffe26   2 weeks ago      1.06GB
+ghcr.io/ahrefdisha/ghcr-demo                 latest      6a4f2417cfaf   2 weeks ago      270MB
+python11                                     latest      1dc31f39ad8d   2 weeks ago      236MB
+ubuntu-demo                                  latest      ce92ceb410e0   3 weeks ago      450MB
+ubuntu-php                                   latest      b96ec885031b   3 weeks ago      451MB
+dishatribedy/alpine-php                      v1          25109184c71b   5 weeks ago      13.6MB
+alpine                                       latest      25109184c71b   5 weeks ago      13.6MB
+ubuntu                                       latest      cd1dba651b30   7 weeks ago      139MB
+dishatribedy/ubuntu                          latest      0406aba87cff   7 weeks ago      139MB
+microservices-project-order-service          latest      d85bd4e04a97   2 months ago     202MB
+microservices-project-notification-service   latest      c8124c952eb1   2 months ago     192MB
+microservices-project-product-service        latest      f384ea9a1283   2 months ago     192MB
+nginx                                        latest      fb01117203ff   2 months ago     244MB
+dishatribedy/myflaskapp                      v3          18e90a3b7627   3 months ago     238MB
+myflaskapp                                   v3          18e90a3b7627   3 months ago     238MB
+dishatribedy/myflaskapp                      v2          e76827bf1247   3 months ago     238MB
+myflaskapp                                   v2          e76827bf1247   3 months ago     238MB
+dishatribedy/pratical                        latest      42a77c24d4d2   3 months ago     82.4MB
+dishatribedy/myflaskapp                      v1          4b9403ec2116   3 months ago     238MB
+myflaskapp                                   v1          4b9403ec2116   3 months ago     238MB
+docker-nginx-flask                           latest      d6999ed9b01a   3 months ago     1.61GB
+docker-nginx-web                             latest      60f67c26232a   3 months ago     1.61GB
+cloudproject                                 latest      d7a0daa2c5dc   3 months ago     80.9MB
+my-site                                      latest      ccf23421c8f7   3 months ago     244MB
+mongo                                        latest      7245ffb851d1   3 months ago     1.22GB
+flask-hello-microservice                     latest      ea0be0f5921e   3 months ago     228MB
+<none>                                       <none>      553f64aecdc3   3 months ago     244MB
+<none>                                       <none>      66460d557b25   5 months ago     139MB
+gcr.io/k8s-minikube/kicbase                  v0.0.48     18b0fda1fa3d   6 months ago     1.73GB
+gcr.io/k8s-minikube/kicbase                  <none>      7171c97a5162   6 months ago     1.73GB
+hello-world                                  latest      56433a6be3fd   7 months ago     16.9kB
+httpd                                        alpine      07b2fabb7029   7 months ago     103MB
+busybox                                      latest      e3652a00a2fa   17 months ago    6.21MB
+philippaul/node-mongo-db                     01          05028c7ed2f1   2 years ago      1.61GB
+philippaul/node-mongo-db                     02          2cf9fd486cf6   2 years ago      1.61GB
+mysql-demo                                   latest      7ede14584684   2 years ago      813MB
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % docker login ghcr.io
+Authenticating with existing credentials... [Username: ahrefdisha]
+
+i Info → To login with a different account, run 'docker logout' followed by 'docker login'
+
+
+Login Succeeded
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % docker login ghcr.io
+Authenticating with existing credentials... [Username: ahrefdisha]
+
+i Info → To login with a different account, run 'docker logout' followed by 'docker login'
+
+
+Login Succeeded
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % ls
+Dockerfile	index.html
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % docker build -t ghcr.io/ahrefdisha/ghcr-demo:v1 .
+[+] Building 0.3s (7/7) FINISHED                                                                                                                                                     docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                                                                 0.0s
+ => => transferring dockerfile: 104B                                                                                                                                                                 0.0s
+ => [internal] load metadata for docker.io/library/nginx:latest                                                                                                                                      0.0s
+ => [internal] load .dockerignore                                                                                                                                                                    0.0s
+ => => transferring context: 2B                                                                                                                                                                      0.0s
+ => [internal] load build context                                                                                                                                                                    0.0s
+ => => transferring context: 31B                                                                                                                                                                     0.0s
+ => [1/2] FROM docker.io/library/nginx:latest@sha256:fb01117203ff38c2f9af91db1a7409459182a37c87cced5cb442d1d8fcc66d19                                                                                0.0s
+ => => resolve docker.io/library/nginx:latest@sha256:fb01117203ff38c2f9af91db1a7409459182a37c87cced5cb442d1d8fcc66d19                                                                                0.0s
+ => CACHED [2/2] COPY index.html /usr/share/nginx/html/index.html                                                                                                                                    0.0s
+ => exporting to image                                                                                                                                                                               0.0s
+ => => exporting layers                                                                                                                                                                              0.0s
+ => => exporting manifest sha256:9e51076ca66a0b6ce40296af7ddf39d37c71b55aa564a45f1356024fb06023db                                                                                                    0.0s
+ => => exporting config sha256:664b3212fd15c7ce68c51d4ac04419bbb5d6e4a271d21e0e3663d99aff9eae5c                                                                                                      0.0s
+ => => exporting attestation manifest sha256:462d363ccb1a129221ca61f3a6a0cfda1b01c59ebb0bbac0150a218a3319e734                                                                                        0.0s
+ => => exporting manifest list sha256:89f8ab9111082d13d01586dd3b8c6faf702ef289c73c61416740715e20005c04                                                                                               0.0s
+ => => naming to ghcr.io/ahrefdisha/ghcr-demo:v1                                                                                                                                                     0.0s
+ => => unpacking to ghcr.io/ahrefdisha/ghcr-demo:v1                                                                                                                                                  0.0s
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % docker images
+REPOSITORY                                   TAG         IMAGE ID       CREATED             SIZE
+ghcr.io/ahrefdisha/ghcr-demo                 v1          89f8ab911108   7 minutes ago       244MB
+ghcr.io/dishatribedy/ghcr-demo               v1          99e04756e748   7 minutes ago       244MB
+ubuntu-php-echo                              latest      c9ae005c9e82   18 minutes ago      346MB
+dishatribedy/ubuntu-apache-php               v1          60664b1bb614   25 minutes ago      453MB
+dishatribedy/alpine-php-installed            v1          b16aaf7a25eb   56 minutes ago      31MB
+<none>                                       <none>      a8a5645920f8   About an hour ago   31MB
+devtask-manager-frontend                     latest      87bcf1d2380d   4 days ago          94.1MB
+devtask-manager-backend                      latest      a0a603e3c176   4 days ago          298MB
+postgres                                     15-alpine   fceb6f86328c   11 days ago         386MB
+httpd                                        latest      96b1e8f69ee3   13 days ago         205MB
+ghcr.io/ahrefdisha/docker-flask              latest      5ac9bab39c11   2 weeks ago         236MB
+ghcr.io/ahrefdisha/sql_1612                  latest      320d4c3ffe26   2 weeks ago         1.06GB
+ghcr.io/ahrefdisha/sql_1612                  v1          320d4c3ffe26   2 weeks ago         1.06GB
+ghcr.io/ahrefdisha/ghcr-demo                 latest      6a4f2417cfaf   2 weeks ago         270MB
+python11                                     latest      1dc31f39ad8d   2 weeks ago         236MB
+ubuntu-demo                                  latest      ce92ceb410e0   3 weeks ago         450MB
+ubuntu-php                                   latest      b96ec885031b   3 weeks ago         451MB
+dishatribedy/alpine-php                      v1          25109184c71b   5 weeks ago         13.6MB
+alpine                                       latest      25109184c71b   5 weeks ago         13.6MB
+ubuntu                                       latest      cd1dba651b30   7 weeks ago         139MB
+dishatribedy/ubuntu                          latest      0406aba87cff   7 weeks ago         139MB
+microservices-project-order-service          latest      d85bd4e04a97   2 months ago        202MB
+microservices-project-product-service        latest      f384ea9a1283   2 months ago        192MB
+microservices-project-notification-service   latest      c8124c952eb1   2 months ago        192MB
+nginx                                        latest      fb01117203ff   2 months ago        244MB
+dishatribedy/myflaskapp                      v3          18e90a3b7627   3 months ago        238MB
+myflaskapp                                   v3          18e90a3b7627   3 months ago        238MB
+dishatribedy/myflaskapp                      v2          e76827bf1247   3 months ago        238MB
+myflaskapp                                   v2          e76827bf1247   3 months ago        238MB
+dishatribedy/pratical                        latest      42a77c24d4d2   3 months ago        82.4MB
+dishatribedy/myflaskapp                      v1          4b9403ec2116   3 months ago        238MB
+myflaskapp                                   v1          4b9403ec2116   3 months ago        238MB
+docker-nginx-flask                           latest      d6999ed9b01a   3 months ago        1.61GB
+docker-nginx-web                             latest      60f67c26232a   3 months ago        1.61GB
+cloudproject                                 latest      d7a0daa2c5dc   3 months ago        80.9MB
+my-site                                      latest      ccf23421c8f7   3 months ago        244MB
+mongo                                        latest      7245ffb851d1   3 months ago        1.22GB
+flask-hello-microservice                     latest      ea0be0f5921e   3 months ago        228MB
+<none>                                       <none>      553f64aecdc3   3 months ago        244MB
+<none>                                       <none>      66460d557b25   5 months ago        139MB
+gcr.io/k8s-minikube/kicbase                  <none>      7171c97a5162   6 months ago        1.73GB
+gcr.io/k8s-minikube/kicbase                  v0.0.48     18b0fda1fa3d   6 months ago        1.73GB
+hello-world                                  latest      56433a6be3fd   7 months ago        16.9kB
+httpd                                        alpine      07b2fabb7029   7 months ago        103MB
+busybox                                      latest      e3652a00a2fa   17 months ago       6.21MB
+philippaul/node-mongo-db                     01          05028c7ed2f1   2 years ago         1.61GB
+philippaul/node-mongo-db                     02          2cf9fd486cf6   2 years ago         1.61GB
+mysql-demo                                   latest      7ede14584684   2 years ago         813MB
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % docker push ghcr.io/ahrefdisha/ghcr-demo:v1
+The push refers to repository [ghcr.io/ahrefdisha/ghcr-demo]
+abc3c3db6b9f: Pushed 
+b8b0307e95c9: Pushed 
+fe1d23b41cb3: Pushed 
+fda1d961e2b7: Pushed 
+f626fba1463b: Pushed 
+1b7c70849006: Pushed 
+89d0a1112522: Pushed 
+dc7670a8c99f: Pushed 
+10dbff0ec650: Pushed 
+v1: digest: sha256:89f8ab9111082d13d01586dd3b8c6faf702ef289c73c61416740715e20005c04 size: 856
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % docker rmi ghcr.io/ahrefdisha/ghcr-demo:v1
+Untagged: ghcr.io/ahrefdisha/ghcr-demo:v1
+Deleted: sha256:89f8ab9111082d13d01586dd3b8c6faf702ef289c73c61416740715e20005c04
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % docker images
+REPOSITORY                                   TAG         IMAGE ID       CREATED             SIZE
+ghcr.io/dishatribedy/ghcr-demo               v1          99e04756e748   8 minutes ago       244MB
+ubuntu-php-echo                              latest      c9ae005c9e82   20 minutes ago      346MB
+dishatribedy/ubuntu-apache-php               v1          60664b1bb614   27 minutes ago      453MB
+dishatribedy/alpine-php-installed            v1          b16aaf7a25eb   58 minutes ago      31MB
+<none>                                       <none>      a8a5645920f8   About an hour ago   31MB
+devtask-manager-frontend                     latest      87bcf1d2380d   4 days ago          94.1MB
+devtask-manager-backend                      latest      a0a603e3c176   4 days ago          298MB
+postgres                                     15-alpine   fceb6f86328c   11 days ago         386MB
+httpd                                        latest      96b1e8f69ee3   13 days ago         205MB
+ghcr.io/ahrefdisha/docker-flask              latest      5ac9bab39c11   2 weeks ago         236MB
+ghcr.io/ahrefdisha/sql_1612                  latest      320d4c3ffe26   2 weeks ago         1.06GB
+ghcr.io/ahrefdisha/sql_1612                  v1          320d4c3ffe26   2 weeks ago         1.06GB
+ghcr.io/ahrefdisha/ghcr-demo                 latest      6a4f2417cfaf   2 weeks ago         270MB
+python11                                     latest      1dc31f39ad8d   2 weeks ago         236MB
+ubuntu-demo                                  latest      ce92ceb410e0   3 weeks ago         450MB
+ubuntu-php                                   latest      b96ec885031b   3 weeks ago         451MB
+alpine                                       latest      25109184c71b   5 weeks ago         13.6MB
+dishatribedy/alpine-php                      v1          25109184c71b   5 weeks ago         13.6MB
+dishatribedy/ubuntu                          latest      0406aba87cff   7 weeks ago         139MB
+ubuntu                                       latest      cd1dba651b30   7 weeks ago         139MB
+microservices-project-order-service          latest      d85bd4e04a97   2 months ago        202MB
+microservices-project-product-service        latest      f384ea9a1283   2 months ago        192MB
+microservices-project-notification-service   latest      c8124c952eb1   2 months ago        192MB
+nginx                                        latest      fb01117203ff   2 months ago        244MB
+dishatribedy/myflaskapp                      v3          18e90a3b7627   3 months ago        238MB
+myflaskapp                                   v3          18e90a3b7627   3 months ago        238MB
+dishatribedy/myflaskapp                      v2          e76827bf1247   3 months ago        238MB
+myflaskapp                                   v2          e76827bf1247   3 months ago        238MB
+dishatribedy/pratical                        latest      42a77c24d4d2   3 months ago        82.4MB
+myflaskapp                                   v1          4b9403ec2116   3 months ago        238MB
+dishatribedy/myflaskapp                      v1          4b9403ec2116   3 months ago        238MB
+docker-nginx-flask                           latest      d6999ed9b01a   3 months ago        1.61GB
+docker-nginx-web                             latest      60f67c26232a   3 months ago        1.61GB
+cloudproject                                 latest      d7a0daa2c5dc   3 months ago        80.9MB
+my-site                                      latest      ccf23421c8f7   3 months ago        244MB
+mongo                                        latest      7245ffb851d1   3 months ago        1.22GB
+flask-hello-microservice                     latest      ea0be0f5921e   3 months ago        228MB
+<none>                                       <none>      553f64aecdc3   3 months ago        244MB
+<none>                                       <none>      66460d557b25   5 months ago        139MB
+gcr.io/k8s-minikube/kicbase                  <none>      7171c97a5162   6 months ago        1.73GB
+gcr.io/k8s-minikube/kicbase                  v0.0.48     18b0fda1fa3d   6 months ago        1.73GB
+hello-world                                  latest      56433a6be3fd   7 months ago        16.9kB
+httpd                                        alpine      07b2fabb7029   7 months ago        103MB
+busybox                                      latest      e3652a00a2fa   17 months ago       6.21MB
+philippaul/node-mongo-db                     01          05028c7ed2f1   2 years ago         1.61GB
+philippaul/node-mongo-db                     02          2cf9fd486cf6   2 years ago         1.61GB
+mysql-demo                                   latest      7ede14584684   2 years ago         813MB
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % docker pull ghcr.io/ahrefdisha/ghcr-demo:v1
+v1: Pulling from ahrefdisha/ghcr-demo
+Digest: sha256:89f8ab9111082d13d01586dd3b8c6faf702ef289c73c61416740715e20005c04
+Status: Downloaded newer image for ghcr.io/ahrefdisha/ghcr-demo:v1
+ghcr.io/ahrefdisha/ghcr-demo:v1
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % docker images
+REPOSITORY                                   TAG         IMAGE ID       CREATED             SIZE
+ghcr.io/dishatribedy/ghcr-demo               v1          99e04756e748   9 minutes ago       244MB
+ghcr.io/ahrefdisha/ghcr-demo                 v1          89f8ab911108   9 minutes ago       244MB
+ubuntu-php-echo                              latest      c9ae005c9e82   21 minutes ago      346MB
+dishatribedy/ubuntu-apache-php               v1          60664b1bb614   28 minutes ago      453MB
+dishatribedy/alpine-php-installed            v1          b16aaf7a25eb   59 minutes ago      31MB
+<none>                                       <none>      a8a5645920f8   About an hour ago   31MB
+devtask-manager-frontend                     latest      87bcf1d2380d   4 days ago          94.1MB
+devtask-manager-backend                      latest      a0a603e3c176   4 days ago          298MB
+postgres                                     15-alpine   fceb6f86328c   11 days ago         386MB
+httpd                                        latest      96b1e8f69ee3   13 days ago         205MB
+ghcr.io/ahrefdisha/docker-flask              latest      5ac9bab39c11   2 weeks ago         236MB
+ghcr.io/ahrefdisha/sql_1612                  latest      320d4c3ffe26   2 weeks ago         1.06GB
+ghcr.io/ahrefdisha/sql_1612                  v1          320d4c3ffe26   2 weeks ago         1.06GB
+ghcr.io/ahrefdisha/ghcr-demo                 latest      6a4f2417cfaf   2 weeks ago         270MB
+python11                                     latest      1dc31f39ad8d   2 weeks ago         236MB
+ubuntu-demo                                  latest      ce92ceb410e0   3 weeks ago         450MB
+ubuntu-php                                   latest      b96ec885031b   3 weeks ago         451MB
+alpine                                       latest      25109184c71b   5 weeks ago         13.6MB
+dishatribedy/alpine-php                      v1          25109184c71b   5 weeks ago         13.6MB
+ubuntu                                       latest      cd1dba651b30   7 weeks ago         139MB
+dishatribedy/ubuntu                          latest      0406aba87cff   7 weeks ago         139MB
+microservices-project-order-service          latest      d85bd4e04a97   2 months ago        202MB
+microservices-project-product-service        latest      f384ea9a1283   2 months ago        192MB
+microservices-project-notification-service   latest      c8124c952eb1   2 months ago        192MB
+nginx                                        latest      fb01117203ff   2 months ago        244MB
+myflaskapp                                   v3          18e90a3b7627   3 months ago        238MB
+dishatribedy/myflaskapp                      v3          18e90a3b7627   3 months ago        238MB
+dishatribedy/myflaskapp                      v2          e76827bf1247   3 months ago        238MB
+myflaskapp                                   v2          e76827bf1247   3 months ago        238MB
+dishatribedy/pratical                        latest      42a77c24d4d2   3 months ago        82.4MB
+dishatribedy/myflaskapp                      v1          4b9403ec2116   3 months ago        238MB
+myflaskapp                                   v1          4b9403ec2116   3 months ago        238MB
+docker-nginx-flask                           latest      d6999ed9b01a   3 months ago        1.61GB
+docker-nginx-web                             latest      60f67c26232a   3 months ago        1.61GB
+cloudproject                                 latest      d7a0daa2c5dc   3 months ago        80.9MB
+my-site                                      latest      ccf23421c8f7   3 months ago        244MB
+mongo                                        latest      7245ffb851d1   3 months ago        1.22GB
+flask-hello-microservice                     latest      ea0be0f5921e   3 months ago        228MB
+<none>                                       <none>      553f64aecdc3   3 months ago        244MB
+<none>                                       <none>      66460d557b25   5 months ago        139MB
+gcr.io/k8s-minikube/kicbase                  v0.0.48     18b0fda1fa3d   6 months ago        1.73GB
+gcr.io/k8s-minikube/kicbase                  <none>      7171c97a5162   6 months ago        1.73GB
+hello-world                                  latest      56433a6be3fd   7 months ago        16.9kB
+httpd                                        alpine      07b2fabb7029   7 months ago        103MB
+busybox                                      latest      e3652a00a2fa   17 months ago       6.21MB
+philippaul/node-mongo-db                     01          05028c7ed2f1   2 years ago         1.61GB
+philippaul/node-mongo-db                     02          2cf9fd486cf6   2 years ago         1.61GB
+mysql-demo                                   latest      7ede14584684   2 years ago         813MB
+dishatribedy@Dishas-MacBook-Air-2 ghcr-demo2 % docker run -d -p 8080:80 ghcr.io/ahrefdisha/ghcr-demo:v1
+cbf8615d5313e9ebf4e51ce08276fac45258ac8c2a9d1859fddba3bc42461bf7
