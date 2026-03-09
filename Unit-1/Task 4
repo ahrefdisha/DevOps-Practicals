@@ -1,0 +1,58 @@
+# Unit 1 - Task 04
+
+## Aim
+Create and use a Docker volume to share data between the host system and a container.
+
+## Step 1: Create Directory on Host
+
+mkdir docker-volume-demo  
+cd docker-volume-demo
+
+## Step 2: Create File
+
+echo "Hello from Host System" > data.txt
+
+## Step 3: Run Ubuntu Container with Volume
+
+docker run -it --name volume-container -v $(pwd):/shared ubuntu bash
+
+## Step 4: Access Mounted Directory
+
+cd /shared  
+ls
+
+## Step 5: Modify File
+
+echo "Modified inside container" >> data.txt
+
+## Step 6: Exit Container
+
+exit
+
+## Verification
+
+cat data.txt
+
+
+##output
+
+dishatribedy@Dishas-MacBook-Air-2 ~ % cd docker-volume-demo
+dishatribedy@Dishas-MacBook-Air-2 docker-volume-demo % echo "Hello from Host System" > data.txt
+dishatribedy@Dishas-MacBook-Air-2 docker-volume-demo % cat data.txt
+Hello from Host System
+dishatribedy@Dishas-MacBook-Air-2 docker-volume-demo % docker run -it --name volume-container -v $(pwd):/shared ubuntu bash
+root@4acf4f5a8543:/# cd /shared
+root@4acf4f5a8543:/shared# ls
+data.txt
+root@4acf4f5a8543:/shared# cat data.txt
+Hello from Host System
+root@4acf4f5a8543:/shared# echo "Modified inside container" >> data.txt
+root@4acf4f5a8543:/shared# cat data.txt
+Hello from Host System
+Modified inside container
+root@4acf4f5a8543:/shared# exit
+exit
+dishatribedy@Dishas-MacBook-Air-2 docker-volume-demo % cat data.txt
+Hello from Host System
+Modified inside container
+dishatribedy@Dishas-MacBook-Air-2 docker-volume-demo % 
