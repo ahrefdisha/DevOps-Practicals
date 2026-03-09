@@ -1,0 +1,126 @@
+Aim
+
+To build a Docker image using Ubuntu and execute an echo command when the container runs.
+
+Step 1: Create Directory
+
+mkdir docker-prac2
+cd docker-prac2
+
+Step 2: Create Dockerfile
+
+nano Dockerfile
+
+Step 3: Dockerfile Content
+
+FROM ubuntu
+LABEL maintainer="Student Demo"
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt update && apt install -y php nano && rm -rf /var/lib/apt/lists/*
+CMD ["echo", "Hello Students"]
+
+Step 4: Build Docker Image
+
+docker build -t ubuntu-php-echo .
+
+Step 5: Run Container
+
+docker run ubuntu-php-echo
+
+Step 6: Get Inside Container
+
+docker run -it ubuntu-php-echo bash
+
+Step 7: Verify PHP Installation
+
+php -v
+
+Result
+
+Docker image was successfully built using a Dockerfile and the container prints "Hello Students" when executed. PHP installation inside the container was verified successfully.
+
+##output
+
+dishatribedy@Dishas-MacBook-Air-2 ~ % mkdir docker-prac2
+
+dishatribedy@Dishas-MacBook-Air-2 ~ % cd docker-prac2
+dishatribedy@Dishas-MacBook-Air-2 docker-prac2 % nano Dockerfile
+dishatribedy@Dishas-MacBook-Air-2 docker-prac2 % ls
+Dockerfile
+dishatribedy@Dishas-MacBook-Air-2 docker-prac2 % docker build -t ubuntu-php-echo .
+[+] Building 57.4s (6/6) FINISHED                                                                                                                                                    docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                                                                 0.0s
+ => => transferring dockerfile: 349B                                                                                                                                                                 0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:latest                                                                                                                                     0.0s
+ => [internal] load .dockerignore                                                                                                                                                                    0.0s
+ => => transferring context: 2B                                                                                                                                                                      0.0s
+ => CACHED [1/2] FROM docker.io/library/ubuntu:latest@sha256:cd1dba651b3080c3686ecf4e3c4220f026b521fb76978881737d24f200828b2b                                                                        0.0s
+ => => resolve docker.io/library/ubuntu:latest@sha256:cd1dba651b3080c3686ecf4e3c4220f026b521fb76978881737d24f200828b2b                                                                               0.0s
+ => [2/2] RUN apt update && apt install -y php nano && rm -rf /var/lib/apt/lists/*                                                                                                                  52.9s
+ => exporting to image                                                                                                                                                                               4.2s 
+ => => exporting layers                                                                                                                                                                              3.5s 
+ => => exporting manifest sha256:9995aca6575eaf613ad6d760c2ba994beb57d926621e240257f937a98d05bf20                                                                                                    0.0s 
+ => => exporting config sha256:d7a88ca71f39ba98662e606838e07320a602e691306791cce1ec7b88e18650de                                                                                                      0.0s 
+ => => exporting attestation manifest sha256:9977cc5144353916653c974cc75576e3712b1d9f20fcdd6dd286b70a5768a421                                                                                        0.0s 
+ => => exporting manifest list sha256:c9ae005c9e82892ce8f966e99f939cc218bb6aa0186434008b3b2d3e1dee72e8                                                                                               0.0s 
+ => => naming to docker.io/library/ubuntu-php-echo:latest                                                                                                                                            0.0s
+ => => unpacking to docker.io/library/ubuntu-php-echo:latest                                                                                                                                         0.7s
+dishatribedy@Dishas-MacBook-Air-2 docker-prac2 % docker images
+REPOSITORY                                   TAG         IMAGE ID       CREATED              SIZE
+ubuntu-php-echo                              latest      c9ae005c9e82   About a minute ago   346MB
+dishatribedy/ubuntu-apache-php               v1          60664b1bb614   8 minutes ago        453MB
+dishatribedy/alpine-php-installed            v1          b16aaf7a25eb   40 minutes ago       31MB
+<none>                                       <none>      a8a5645920f8   48 minutes ago       31MB
+devtask-manager-frontend                     latest      87bcf1d2380d   4 days ago           94.1MB
+devtask-manager-backend                      latest      a0a603e3c176   4 days ago           298MB
+postgres                                     15-alpine   fceb6f86328c   11 days ago          386MB
+httpd                                        latest      96b1e8f69ee3   13 days ago          205MB
+ghcr.io/ahrefdisha/docker-flask              latest      5ac9bab39c11   2 weeks ago          236MB
+ghcr.io/ahrefdisha/sql_1612                  latest      320d4c3ffe26   2 weeks ago          1.06GB
+ghcr.io/ahrefdisha/sql_1612                  v1          320d4c3ffe26   2 weeks ago          1.06GB
+ghcr.io/ahrefdisha/ghcr-demo                 latest      6a4f2417cfaf   2 weeks ago          270MB
+python11                                     latest      1dc31f39ad8d   2 weeks ago          236MB
+ubuntu-demo                                  latest      ce92ceb410e0   3 weeks ago          450MB
+ubuntu-php                                   latest      b96ec885031b   3 weeks ago          451MB
+alpine                                       latest      25109184c71b   5 weeks ago          13.6MB
+dishatribedy/alpine-php                      v1          25109184c71b   5 weeks ago          13.6MB
+ubuntu                                       latest      cd1dba651b30   7 weeks ago          139MB
+dishatribedy/ubuntu                          latest      0406aba87cff   7 weeks ago          139MB
+microservices-project-order-service          latest      d85bd4e04a97   2 months ago         202MB
+microservices-project-notification-service   latest      c8124c952eb1   2 months ago         192MB
+microservices-project-product-service        latest      f384ea9a1283   2 months ago         192MB
+nginx                                        latest      fb01117203ff   2 months ago         244MB
+myflaskapp                                   v3          18e90a3b7627   3 months ago         238MB
+dishatribedy/myflaskapp                      v3          18e90a3b7627   3 months ago         238MB
+dishatribedy/myflaskapp                      v2          e76827bf1247   3 months ago         238MB
+myflaskapp                                   v2          e76827bf1247   3 months ago         238MB
+dishatribedy/pratical                        latest      42a77c24d4d2   3 months ago         82.4MB
+dishatribedy/myflaskapp                      v1          4b9403ec2116   3 months ago         238MB
+myflaskapp                                   v1          4b9403ec2116   3 months ago         238MB
+docker-nginx-flask                           latest      d6999ed9b01a   3 months ago         1.61GB
+docker-nginx-web                             latest      60f67c26232a   3 months ago         1.61GB
+cloudproject                                 latest      d7a0daa2c5dc   3 months ago         80.9MB
+my-site                                      latest      ccf23421c8f7   3 months ago         244MB
+mongo                                        latest      7245ffb851d1   3 months ago         1.22GB
+flask-hello-microservice                     latest      ea0be0f5921e   3 months ago         228MB
+<none>                                       <none>      553f64aecdc3   3 months ago         244MB
+<none>                                       <none>      66460d557b25   5 months ago         139MB
+gcr.io/k8s-minikube/kicbase                  v0.0.48     18b0fda1fa3d   6 months ago         1.73GB
+gcr.io/k8s-minikube/kicbase                  <none>      7171c97a5162   6 months ago         1.73GB
+hello-world                                  latest      56433a6be3fd   7 months ago         16.9kB
+httpd                                        alpine      07b2fabb7029   7 months ago         103MB
+busybox                                      latest      e3652a00a2fa   17 months ago        6.21MB
+philippaul/node-mongo-db                     01          05028c7ed2f1   2 years ago          1.61GB
+philippaul/node-mongo-db                     02          2cf9fd486cf6   2 years ago          1.61GB
+dishatribedy@Dishas-MacBook-Air-2 docker-prac2 % docker run ubuntu-php-echo
+Hello Students
+dishatribedy@Dishas-MacBook-Air-2 docker-prac2 % docker run -it ubuntu-php-echo bash
+root@983ee9f16088:/# php -v
+PHP 8.3.6 (cli) (built: Jan  7 2026 08:40:32) (NTS)
+Copyright (c) The PHP Group
+Zend Engine v4.3.6, Copyright (c) Zend Technologies
+    with Zend OPcache v8.3.6, Copyright (c), by Zend Technologies
+root@983ee9f16088:/# 
+
+
+
