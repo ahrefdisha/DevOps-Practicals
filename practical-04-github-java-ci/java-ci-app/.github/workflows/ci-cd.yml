@@ -1,0 +1,29 @@
+name: Java CI Pipeline
+
+on:
+  push:
+    branches:
+      - unit-5
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Install dependencies and build
+        run: mvn clean install
+
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: java-build
+          path: target/*.jar
