@@ -1,0 +1,16 @@
+name: Docker Workflow
+
+on:
+  push:
+    branches:
+      - unit-5
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t my-docker-app .
